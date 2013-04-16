@@ -49,7 +49,7 @@ public class TownshipDAO {
     }
 
     public ArrayList<Township> queryAll() {
-        String sql = "select * from township";
+        String sql = "select * from township order by name asc";
         ArrayList<Township> townshipList = null;
         Statement st;
         try {

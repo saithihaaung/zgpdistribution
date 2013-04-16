@@ -42,7 +42,7 @@ public class CityDAO {
     }
     
     public ArrayList<City> queryAll(){
-        String sql = "select * from city";
+        String sql = "select * from city order by name asc";
         ArrayList<City> clist = null;
         try {
             clist = new ArrayList<>();

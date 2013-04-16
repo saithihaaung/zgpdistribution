@@ -47,7 +47,7 @@ public class PositionDAO {
     }
 
     public ArrayList<Position> queryAll() {
-        String sql = "select * from position";
+        String sql = "select * from position order by position ASC";
         ArrayList<Position> positionList = null;
         try {
             positionList = new ArrayList<>();

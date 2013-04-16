@@ -77,4 +77,25 @@ public class EmployeeDAO {
 
         return employeeList;
     }
+    public ArrayList<Employee> queryMgr() {
+        String sql = "SELECT * FROM employeeinfo WHERE jobPosition = 'MANAGER'";
+        ArrayList<Employee> employeeList = null;
+        try {
+            employeeList = new ArrayList<>();
+            Statement stat = conn.createStatement();
+            ResultSet rs = stat.executeQuery(sql);
+            while (rs.next()) {
+                employeeList.add(new Employee(rs.getString("name"), rs.getString("NRC"),
+                        rs.getString("wPhone"), rs.getString("mPhone"), rs.getString("jobPosition"),
+                        rs.getString("dept"), rs.getString("deptMgr"), rs.getString("address"), rs.getString("tsp"),
+                        rs.getString("city"), rs.getString("state"), rs.getString("country"), rs.getString("email"),
+                        rs.getString("team")));
+            }
+            rs.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        return employeeList;
+    }
 }

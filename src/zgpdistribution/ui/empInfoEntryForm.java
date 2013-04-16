@@ -8,12 +8,14 @@ import java.util.ArrayList;
 import zgpdistribution.util.CityDAO;
 import zgpdistribution.util.CountryDAO;
 import zgpdistribution.util.DepartmentDAO;
+import zgpdistribution.util.EmployeeDAO;
 import zgpdistribution.util.PositionDAO;
 import zgpdistribution.util.StateDAO;
 import zgpdistribution.util.TownshipDAO;
 import zgpdistribution.util.oops.City;
 import zgpdistribution.util.oops.Country;
 import zgpdistribution.util.oops.Department;
+import zgpdistribution.util.oops.Employee;
 import zgpdistribution.util.oops.Position;
 import zgpdistribution.util.oops.State;
 import zgpdistribution.util.oops.Township;
@@ -60,6 +62,10 @@ public class empInfoEntryForm extends javax.swing.JFrame {
             ArrayList<Department> departmentList = new DepartmentDAO().queryAll();
             for (Department department : departmentList) {
                 jComboBoxDepartment.addItem(department.getName());
+            }
+            ArrayList<Employee> employeeList = new EmployeeDAO().queryMgr();
+            for (Employee employee : employeeList) {
+                jComboBoxManager.addItem(employee.getName());
             }
             ArrayList<Position> positionList = new PositionDAO().queryAll();
             for (Position position : positionList) {

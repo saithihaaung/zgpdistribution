@@ -48,7 +48,7 @@ public class StateDAO {
         return true;
     }
     public ArrayList<State> queryAll(){
-        String sql = "select * from state";
+        String sql = "select * from state order by name asc";
         ArrayList<State> stateList = null;
         try {
             stateList = new ArrayList<>();

@@ -70,7 +70,7 @@ public class itemsEntryForm extends javax.swing.JFrame {
         jButtonCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Intems Information Entry");
+        setTitle("Intem Information Entry");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 

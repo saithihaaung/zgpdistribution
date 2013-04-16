@@ -42,7 +42,7 @@ public class CountryDAO {
     }
     
     public ArrayList<Country> queryAll(){
-      String sql = "select * from country";
+      String sql = "select * from country order by name asc";
       ArrayList<Country> countryList = null;
         try {
             countryList = new ArrayList<>();
