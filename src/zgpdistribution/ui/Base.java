@@ -297,7 +297,6 @@ public class Base extends javax.swing.JFrame {
         jTabbedPaneHelpBase = new javax.swing.JTabbedPane();
         jPanelContents = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jPanelAbout = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -1284,8 +1283,6 @@ public class Base extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton1.setText("jToggleButton1");
-
         javax.swing.GroupLayout jPanelContentsLayout = new javax.swing.GroupLayout(jPanelContents);
         jPanelContents.setLayout(jPanelContentsLayout);
         jPanelContentsLayout.setHorizontalGroup(
@@ -1293,18 +1290,14 @@ public class Base extends javax.swing.JFrame {
             .addGroup(jPanelContentsLayout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(651, Short.MAX_VALUE))
+                .addContainerGap(912, Short.MAX_VALUE))
         );
         jPanelContentsLayout.setVerticalGroup(
             jPanelContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelContentsLayout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addGroup(jPanelContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addGap(147, 147, 147)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(311, Short.MAX_VALUE))
         );
 
         jTabbedPaneHelpBase.addTab("CONTENTS", jPanelContents);
@@ -1445,7 +1438,7 @@ public class Base extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(jPanelContents, "Hello");
+        System.out.println("This is testing");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1629,6 +1622,5 @@ public class Base extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldItemRegWeight;
     private javax.swing.JTextField jTextFieldWhRegName;
     private javax.swing.JTextField jTextFieldWhRegPhone;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
