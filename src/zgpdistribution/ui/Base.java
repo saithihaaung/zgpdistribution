@@ -4,8 +4,6 @@
  */
 package zgpdistribution.ui;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author John
@@ -36,7 +34,13 @@ public class Base extends javax.swing.JFrame {
         jPanelSRM = new javax.swing.JPanel();
         jPanelCRM = new javax.swing.JPanel();
         jPanelSMGMT = new javax.swing.JPanel();
+        jTabbedPaneSMGMTBase = new javax.swing.JTabbedPane();
+        jPanelInvoicing = new javax.swing.JPanel();
+        jPanelPos = new javax.swing.JPanel();
+        jPanelDo = new javax.swing.JPanel();
         jPanelHRM = new javax.swing.JPanel();
+        jTabbedPaneHRBase = new javax.swing.JTabbedPane();
+        jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -135,32 +139,108 @@ public class Base extends javax.swing.JFrame {
 
         jTabbedPaneBase.addTab("CRM", jPanelCRM);
 
-        jPanelSMGMT.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelSMGMT.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jTabbedPaneSMGMTBase.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jPanelInvoicing.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanelInvoicingLayout = new javax.swing.GroupLayout(jPanelInvoicing);
+        jPanelInvoicing.setLayout(jPanelInvoicingLayout);
+        jPanelInvoicingLayout.setHorizontalGroup(
+            jPanelInvoicingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1205, Short.MAX_VALUE)
+        );
+        jPanelInvoicingLayout.setVerticalGroup(
+            jPanelInvoicingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 554, Short.MAX_VALUE)
+        );
+
+        jTabbedPaneSMGMTBase.addTab("INVOICING", jPanelInvoicing);
+
+        jPanelPos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanelPosLayout = new javax.swing.GroupLayout(jPanelPos);
+        jPanelPos.setLayout(jPanelPosLayout);
+        jPanelPosLayout.setHorizontalGroup(
+            jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1205, Short.MAX_VALUE)
+        );
+        jPanelPosLayout.setVerticalGroup(
+            jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 554, Short.MAX_VALUE)
+        );
+
+        jTabbedPaneSMGMTBase.addTab("POS", jPanelPos);
+
+        jPanelDo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanelDoLayout = new javax.swing.GroupLayout(jPanelDo);
+        jPanelDo.setLayout(jPanelDoLayout);
+        jPanelDoLayout.setHorizontalGroup(
+            jPanelDoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1205, Short.MAX_VALUE)
+        );
+        jPanelDoLayout.setVerticalGroup(
+            jPanelDoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 554, Short.MAX_VALUE)
+        );
+
+        jTabbedPaneSMGMTBase.addTab("DO", jPanelDo);
 
         javax.swing.GroupLayout jPanelSMGMTLayout = new javax.swing.GroupLayout(jPanelSMGMT);
         jPanelSMGMT.setLayout(jPanelSMGMTLayout);
         jPanelSMGMTLayout.setHorizontalGroup(
             jPanelSMGMTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1238, Short.MAX_VALUE)
+            .addGroup(jPanelSMGMTLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPaneSMGMTBase)
+                .addContainerGap())
         );
         jPanelSMGMTLayout.setVerticalGroup(
             jPanelSMGMTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGroup(jPanelSMGMTLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPaneSMGMTBase)
+                .addContainerGap())
         );
 
         jTabbedPaneBase.addTab("SMGMT", jPanelSMGMT);
 
         jPanelHRM.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jTabbedPaneHRBase.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1205, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 554, Short.MAX_VALUE)
+        );
+
+        jTabbedPaneHRBase.addTab("EMP REG", jPanel6);
+
         javax.swing.GroupLayout jPanelHRMLayout = new javax.swing.GroupLayout(jPanelHRM);
         jPanelHRM.setLayout(jPanelHRMLayout);
         jPanelHRMLayout.setHorizontalGroup(
             jPanelHRMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1238, Short.MAX_VALUE)
+            .addGroup(jPanelHRMLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPaneHRBase, javax.swing.GroupLayout.DEFAULT_SIZE, 1218, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanelHRMLayout.setVerticalGroup(
             jPanelHRMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGroup(jPanelHRMLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPaneHRBase, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPaneBase.addTab("HRM", jPanelHRM);
@@ -277,14 +357,14 @@ public class Base extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPaneBase)
+                .addComponent(jTabbedPaneBase, javax.swing.GroupLayout.DEFAULT_SIZE, 1251, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPaneBase)
+                .addComponent(jTabbedPaneBase, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -298,7 +378,7 @@ public class Base extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -331,17 +411,23 @@ public class Base extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelAbout;
     private javax.swing.JPanel jPanelAccount;
     private javax.swing.JPanel jPanelCRM;
     private javax.swing.JPanel jPanelContents;
+    private javax.swing.JPanel jPanelDo;
     private javax.swing.JPanel jPanelHRM;
+    private javax.swing.JPanel jPanelInvoicing;
+    private javax.swing.JPanel jPanelPos;
     private javax.swing.JPanel jPanelSMGMT;
     private javax.swing.JPanel jPanelSRM;
     private javax.swing.JPanel jPanelSetup;
     private javax.swing.JTabbedPane jTabbedPaneBase;
+    private javax.swing.JTabbedPane jTabbedPaneHRBase;
     private javax.swing.JTabbedPane jTabbedPaneHelpBase;
     private javax.swing.JTabbedPane jTabbedPaneReportBase;
+    private javax.swing.JTabbedPane jTabbedPaneSMGMTBase;
     private javax.swing.JTabbedPane jTabbedPaneSetupBase;
     // End of variables declaration//GEN-END:variables
 }
