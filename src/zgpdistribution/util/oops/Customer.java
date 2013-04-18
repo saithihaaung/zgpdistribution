@@ -10,12 +10,12 @@ package zgpdistribution.util.oops;
  */
 public class Customer {
 
-    private String outletName, customerName, address, township, city, state, country, email, phone, customerType;
+    private String outletName, customerName, address, township, city, state, country, email, phone, fax, customerType;
 
     public Customer() {
     }
 
-    public Customer(String outletName, String customerName, String address, String township, String city, String state, String country, String email, String phone, String customerType) {
+    public Customer(String outletName, String customerName, String address, String township, String city, String state, String country, String email, String phone, String fax, String customerType) {
         this.outletName = outletName;
         this.customerName = customerName;
         this.address = address;
@@ -25,6 +25,7 @@ public class Customer {
         this.country = country;
         this.email = email;
         this.phone = phone;
+        this.fax = fax;
         this.customerType = customerType;
     }
 
@@ -98,6 +99,14 @@ public class Customer {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
     }
 
     public String getCustomerType() {

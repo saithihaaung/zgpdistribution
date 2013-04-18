@@ -31,42 +31,42 @@ public class ItemsDAO {
     }
 
     public boolean save(Items data) {
-        String sql = "insert into items ( itemsName, itemsCode, category, Supplier,"
-                + " unitPerGrams, stdPrices) value (?,?,?,?,?,?,?,?)";
+        String sql = "insert into items ( itemsName, itemsCode, unitsPerGrams, category, supplier, stdPrices) value (?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, data.getItemsName());
             ps.setString(2, data.getItemsCode());
-            ps.setString(3, data.getCategory());
-            ps.setString(4, data.getSupplier());
-            ps.setInt(5, data.getUnitPerGrams());
+            ps.setInt(3, data.getUnitPerGrams());
+            ps.setString(4, data.getCategory());
+            ps.setString(5, data.getSupplier());
             ps.setInt(6, data.getStdPrices());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ItemsDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
         return true;
     }
-    public ArrayList<Items> queryAll(){
+
+    public ArrayList<Items> queryAll() {
         String sql = "select * from items";
         ArrayList<Items> itemsList = null;
         try {
             itemsList = new ArrayList<>();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {                
+            while (rs.next()) {
                 itemsList.add(new Items(rs.getString("itemsName"), rs.getString("itemsCode"), rs.getString("category"),
                         rs.getString("supplier"), rs.getInt("unitPerGrams"), rs.getInt("stdPrices")));
             }
             rs.close();
         } catch (SQLException ex) {
             Logger.getLogger(ItemsDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        
+
         return itemsList;
     }
 }

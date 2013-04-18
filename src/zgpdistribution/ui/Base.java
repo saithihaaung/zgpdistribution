@@ -9,21 +9,27 @@ import javax.swing.JOptionPane;
 import zgpdistribution.util.CategoryDAO;
 import zgpdistribution.util.CityDAO;
 import zgpdistribution.util.CountryDAO;
+import zgpdistribution.util.CustomerDAO;
 import zgpdistribution.util.DepartmentDAO;
 import zgpdistribution.util.EmployeeDAO;
+import zgpdistribution.util.ItemsDAO;
 import zgpdistribution.util.PositionDAO;
 import zgpdistribution.util.StateDAO;
 import zgpdistribution.util.SupplierDAO;
 import zgpdistribution.util.TownshipDAO;
+import zgpdistribution.util.WarehouseDAO;
 import zgpdistribution.util.oops.Category;
 import zgpdistribution.util.oops.City;
 import zgpdistribution.util.oops.Country;
+import zgpdistribution.util.oops.Customer;
 import zgpdistribution.util.oops.Department;
 import zgpdistribution.util.oops.Employee;
+import zgpdistribution.util.oops.Items;
 import zgpdistribution.util.oops.Position;
 import zgpdistribution.util.oops.State;
 import zgpdistribution.util.oops.Supplier;
 import zgpdistribution.util.oops.Township;
+import zgpdistribution.util.oops.Warehouse;
 
 /**
  *
@@ -126,6 +132,43 @@ public class Base extends javax.swing.JFrame {
         jComboBoxEmpRegManager.setSelectedIndex(0);
         jComboBoxEmpRegPosition.setSelectedIndex(0);
         jTextFieldEmpRegWPhone.setText("");
+        jRadioButtonNoneOfAbove.setSelected(true);
+    }
+
+    private boolean saveEmpReg() {
+        Employee emp = new Employee();
+        String team;
+        emp.setName(jTextFieldEmpRegName.getText().toUpperCase().trim());
+        emp.setNrc(jTextFieldEmpRegNRCNo.getText().trim());
+        emp.setAddress(jTextAreaEmpRegAddress.getText().trim());
+        emp.setTsp(jComboBoxEmpRegTownship.getSelectedItem().toString());
+        emp.setState(jComboBoxEmpRegState.getSelectedItem().toString());
+        emp.setCity(jComboBoxEmpRegCity.getSelectedItem().toString());
+        emp.setCountry(jComboBoxEmpRegCountry.getSelectedItem().toString().toUpperCase());
+        emp.setMphone(jTextFieldEmpRegMPhone.getText().trim());
+        emp.setEmail(jTextFieldEmpRegEmail.getText().toLowerCase().trim());
+        emp.setDept(jComboBoxEmpRegDepartment.getSelectedItem().toString());
+        emp.setDeptMgr(jComboBoxEmpRegManager.getSelectedItem().toString());
+        emp.setWphone(jTextFieldEmpRegWPhone.getText().trim());
+        emp.setJobPosition(jComboBoxEmpRegPosition.getSelectedItem().toString());
+        if (jRadioButtonWholesale.isSelected()) {
+            team = jRadioButtonWholesale.getText();
+        } else if (jRadioButtonTeamA.isSelected()) {
+            team = jRadioButtonTeamA.getText();
+        } else if (jRadioButtonTeamB.isSelected()) {
+            team = jRadioButtonTeamB.getText();
+        } else if (jRadioButtonTeamC.isSelected()) {
+            team = jRadioButtonTeamC.getText();
+        } else if (jRadioButtonRegional.isSelected()) {
+            team = jRadioButtonRegional.getText();
+        } else if (jRadioButtonRetail.isSelected()) {
+            team = jRadioButtonRetail.getText();
+        } else {
+            team = jRadioButtonNoneOfAbove.getText();
+        }
+        emp.setTeam(team);
+
+        return new EmployeeDAO().save(emp);
     }
 
     private void resetCustRegPannel() {
@@ -142,6 +185,39 @@ public class Base extends javax.swing.JFrame {
         jRadioButtonCustRegRetail.setSelected(true);
     }
 
+    private boolean saveCustReg() {
+        Customer cust = new Customer();
+        String custType;
+        cust.setOutletName(jTextFieldCustRegOutletName.getText().trim());
+        cust.setCustomerName(jTextFieldCustRegCustomerName.getText().toUpperCase().trim());
+        cust.setAddress(jTextAreaCustRegAddress.getText().trim());
+        cust.setTownship(jComboBoxCustRegTownship.getSelectedItem().toString());
+        cust.setCity(jComboBoxCustRegState.getSelectedItem().toString());
+        cust.setState(jComboBoxCustRegState.getSelectedItem().toString());
+        cust.setCountry(jComboBoxCustRegCountry.getSelectedItem().toString());
+        cust.setPhone(jTextFieldCustRegPhone.getText().trim());
+        cust.setEmail(jTextFieldCustRegEmail.getText().trim());
+        cust.setFax(jTextFieldCustRegFax.getText().trim());
+        if (jRadioButtonCustRegRetail.isSelected()) {
+            custType = jRadioButtonCustRegRetail.getText();
+        } else if (jRadioButtonCustRegWholeslae.isSelected()) {
+            custType = jRadioButtonCustRegWholeslae.getText();
+        } else if (jRadioButtonCustRegMT.isSelected()) {
+            custType = jRadioButtonCustRegMT.getText();
+        } else if (jRadioButtonCustRegPTR.isSelected()) {
+            custType = jRadioButtonCustRegPTR.getText();
+        } else if (jRadioButtonCustRegPTROutlet.isSelected()) {
+            custType = jRadioButtonCustRegPTROutlet.getText();
+        } else if (jRadioButtonCustRegDealer.isSelected()) {
+            custType = jRadioButtonCustRegDealer.getText();
+        } else {
+            custType = jRadioButtonRetail.getText();
+        }
+        cust.setCustomerType(custType);
+
+        return new CustomerDAO().save(cust);
+    }
+
     private void resetWarehouseRegPannel() {
         jTextFieldWhRegName.setText("");
         jTextAreaWhRegAddress.setText("");
@@ -152,6 +228,18 @@ public class Base extends javax.swing.JFrame {
         jTextFieldWhRegPhone.setText("");
     }
 
+    private boolean saveWhReg() {
+        Warehouse wh = new Warehouse();
+        wh.setName(jTextFieldWhRegName.getText().trim());
+        wh.setAddress(jTextAreaWhRegAddress.getText().trim());
+        wh.setTownship(jComboBoxWhRegTownship.getSelectedItem().toString());
+        wh.setCity(jComboBoxWhRegCity.getSelectedItem().toString());
+        wh.setState(jComboBoxWhRegState.getSelectedItem().toString());
+        wh.setPhone(jTextFieldWhRegPhone.getText().trim());
+        wh.setWhsvr(jComboBoxWhRegSupervisor.getSelectedItem().toString());
+        return new WarehouseDAO().save(wh);
+    }
+
     private void resetItemRegPannel() {
         jTextFieldItemRegName.setText("");
         jTextFieldItemRegCode.setText("");
@@ -159,6 +247,17 @@ public class Base extends javax.swing.JFrame {
         jComboBoxItemRegCategory.setSelectedIndex(0);
         jComboBoxItemRegSupplier.setSelectedIndex(0);
         jTextFieldItemRegPrize.setText("");
+    }
+
+    private boolean saveItemReg() {
+        Items item = new Items();
+        item.setItemsName(jTextFieldItemRegName.getText().trim());
+        item.setItemsCode(jTextFieldItemRegCode.getText().trim());
+        item.setUnitPerGrams(Integer.parseInt(jTextFieldItemRegWeight.getText().trim()));
+        item.setCategory(jComboBoxItemRegCategory.getSelectedItem().toString());
+        item.setSupplier(jComboBoxItemRegSupplier.getSelectedItem().toString());
+        item.setStdPrices(Integer.parseInt(jTextFieldItemRegPrize.getText().trim()));
+        return new ItemsDAO().save(item);
     }
 
     /**
@@ -171,6 +270,7 @@ public class Base extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroupCustRegCustomerType = new javax.swing.ButtonGroup();
+        buttonGroupEmpRegTeam = new javax.swing.ButtonGroup();
         jTabbedPaneBase = new javax.swing.JTabbedPane();
         jPanelSetup = new javax.swing.JPanel();
         jTabbedPaneSetupBase = new javax.swing.JTabbedPane();
@@ -250,6 +350,14 @@ public class Base extends javax.swing.JFrame {
         jComboBoxEmpRegDepartment = new javax.swing.JComboBox();
         jComboBoxEmpRegPosition = new javax.swing.JComboBox();
         jComboBoxEmpRegManager = new javax.swing.JComboBox();
+        jPanelEmpRegTeam = new javax.swing.JPanel();
+        jRadioButtonTeamA = new javax.swing.JRadioButton();
+        jRadioButtonTeamB = new javax.swing.JRadioButton();
+        jRadioButtonTeamC = new javax.swing.JRadioButton();
+        jRadioButtonRetail = new javax.swing.JRadioButton();
+        jRadioButtonWholesale = new javax.swing.JRadioButton();
+        jRadioButtonRegional = new javax.swing.JRadioButton();
+        jRadioButtonNoneOfAbove = new javax.swing.JRadioButton();
         jButtonEmpRegSave = new javax.swing.JButton();
         jButtonEmpRegReset = new javax.swing.JButton();
         jPanelWhManagement = new javax.swing.JPanel();
@@ -290,13 +398,11 @@ public class Base extends javax.swing.JFrame {
         jButtonItemRegSave = new javax.swing.JButton();
         jButtonItemRegReset = new javax.swing.JButton();
         jPanelFleetMGMT = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
         jPanelReport = new javax.swing.JPanel();
         jTabbedPaneReportBase = new javax.swing.JTabbedPane();
         jPanelHelp = new javax.swing.JPanel();
         jTabbedPaneHelpBase = new javax.swing.JTabbedPane();
         jPanelContents = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jPanelAbout = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -715,12 +821,6 @@ public class Base extends javax.swing.JFrame {
 
         jLabelEmpRegMPhone.setText("Mobile Phone :");
 
-        jTextFieldEmpRegNRCNo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldEmpRegNRCNoActionPerformed(evt);
-            }
-        });
-
         jTextAreaEmpRegAddress.setColumns(20);
         jTextAreaEmpRegAddress.setRows(5);
         jScrollPane1.setViewportView(jTextAreaEmpRegAddress);
@@ -819,6 +919,69 @@ public class Base extends javax.swing.JFrame {
 
         jComboBoxEmpRegManager.setToolTipText("");
 
+        jPanelEmpRegTeam.setBorder(javax.swing.BorderFactory.createTitledBorder("Team"));
+
+        buttonGroupEmpRegTeam.add(jRadioButtonTeamA);
+        jRadioButtonTeamA.setText("TEAM A");
+
+        buttonGroupEmpRegTeam.add(jRadioButtonTeamB);
+        jRadioButtonTeamB.setText("TEAM B");
+
+        buttonGroupEmpRegTeam.add(jRadioButtonTeamC);
+        jRadioButtonTeamC.setText("TEAM C");
+
+        buttonGroupEmpRegTeam.add(jRadioButtonRetail);
+        jRadioButtonRetail.setText("RETAIL");
+
+        buttonGroupEmpRegTeam.add(jRadioButtonWholesale);
+        jRadioButtonWholesale.setText("WHOLESALE");
+
+        buttonGroupEmpRegTeam.add(jRadioButtonRegional);
+        jRadioButtonRegional.setText("REGIONAL");
+
+        buttonGroupEmpRegTeam.add(jRadioButtonNoneOfAbove);
+        jRadioButtonNoneOfAbove.setText("NONE OF ABOVE");
+
+        javax.swing.GroupLayout jPanelEmpRegTeamLayout = new javax.swing.GroupLayout(jPanelEmpRegTeam);
+        jPanelEmpRegTeam.setLayout(jPanelEmpRegTeamLayout);
+        jPanelEmpRegTeamLayout.setHorizontalGroup(
+            jPanelEmpRegTeamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEmpRegTeamLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelEmpRegTeamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelEmpRegTeamLayout.createSequentialGroup()
+                        .addGroup(jPanelEmpRegTeamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButtonTeamB)
+                            .addComponent(jRadioButtonTeamA)
+                            .addComponent(jRadioButtonTeamC))
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanelEmpRegTeamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButtonRetail)
+                            .addComponent(jRadioButtonWholesale)
+                            .addComponent(jRadioButtonRegional)))
+                    .addComponent(jRadioButtonNoneOfAbove))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelEmpRegTeamLayout.setVerticalGroup(
+            jPanelEmpRegTeamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEmpRegTeamLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelEmpRegTeamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButtonTeamA)
+                    .addComponent(jRadioButtonRetail))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelEmpRegTeamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButtonTeamB)
+                    .addComponent(jRadioButtonWholesale))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelEmpRegTeamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButtonTeamC)
+                    .addComponent(jRadioButtonRegional))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButtonNoneOfAbove)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanelWorkLayout = new javax.swing.GroupLayout(jPanelWork);
         jPanelWork.setLayout(jPanelWorkLayout);
         jPanelWorkLayout.setHorizontalGroup(
@@ -826,6 +989,7 @@ public class Base extends javax.swing.JFrame {
             .addGroup(jPanelWorkLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelWorkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelEmpRegTeam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelWorkLayout.createSequentialGroup()
                         .addComponent(jLabelEmpRegDepartment)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -866,6 +1030,8 @@ public class Base extends javax.swing.JFrame {
                 .addGroup(jPanelWorkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelEmpRegWPhone)
                     .addComponent(jTextFieldEmpRegWPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanelEmpRegTeam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -903,14 +1069,15 @@ public class Base extends javax.swing.JFrame {
             .addGroup(jPanelEmpRegLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelEmpRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelEmpRegLayout.createSequentialGroup()
                         .addGroup(jPanelEmpRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelWork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonEmpRegSave, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addComponent(jButtonEmpRegReset, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 41, Short.MAX_VALUE))
-                    .addComponent(jPanelPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanelEmpRegLayout.createSequentialGroup()
+                                .addComponent(jButtonEmpRegSave, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(jButtonEmpRegReset, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanelWork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 41, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -954,24 +1121,6 @@ public class Base extends javax.swing.JFrame {
         jLabelWhRegPhone.setText("Phone :");
 
         jLabelWhRegSupervisor.setText("Supervisor :");
-
-        jComboBoxWhRegSupervisor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxWhRegSupervisorActionPerformed(evt);
-            }
-        });
-
-        jComboBoxWhRegState.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxWhRegStateActionPerformed(evt);
-            }
-        });
-
-        jComboBoxWhRegCity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxWhRegCityActionPerformed(evt);
-            }
-        });
 
         jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -1084,33 +1233,9 @@ public class Base extends javax.swing.JFrame {
 
         jLabelItemRegPrize.setText("Unit Prize : ");
 
-        jTextFieldItemRegPrize.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldItemRegPrizeActionPerformed(evt);
-            }
-        });
-
         jLabel17.setText("Kyats");
 
-        jTextFieldItemRegWeight.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldItemRegWeightActionPerformed(evt);
-            }
-        });
-
         jLabelGrams.setText("Grams");
-
-        jTextFieldItemRegCode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldItemRegCodeActionPerformed(evt);
-            }
-        });
-
-        jTextFieldItemRegName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldItemRegNameActionPerformed(evt);
-            }
-        });
 
         jButtonItemRegSave.setText("Save");
         jButtonItemRegSave.addActionListener(new java.awt.event.ActionListener() {
@@ -1221,28 +1346,15 @@ public class Base extends javax.swing.JFrame {
 
         jPanelFleetMGMT.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelFleetMGMTLayout = new javax.swing.GroupLayout(jPanelFleetMGMT);
         jPanelFleetMGMT.setLayout(jPanelFleetMGMTLayout);
         jPanelFleetMGMTLayout.setHorizontalGroup(
             jPanelFleetMGMTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFleetMGMTLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(995, Short.MAX_VALUE))
+            .addGap(0, 1238, Short.MAX_VALUE)
         );
         jPanelFleetMGMTLayout.setVerticalGroup(
             jPanelFleetMGMTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFleetMGMTLayout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(371, Short.MAX_VALUE))
+            .addGap(0, 632, Short.MAX_VALUE)
         );
 
         jTabbedPaneBase.addTab("FLEET MGMT", jPanelFleetMGMT);
@@ -1276,28 +1388,15 @@ public class Base extends javax.swing.JFrame {
 
         jPanelContents.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelContentsLayout = new javax.swing.GroupLayout(jPanelContents);
         jPanelContents.setLayout(jPanelContentsLayout);
         jPanelContentsLayout.setHorizontalGroup(
             jPanelContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelContentsLayout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(912, Short.MAX_VALUE))
+            .addGap(0, 1205, Short.MAX_VALUE)
         );
         jPanelContentsLayout.setVerticalGroup(
             jPanelContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelContentsLayout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(311, Short.MAX_VALUE))
+            .addGap(0, 577, Short.MAX_VALUE)
         );
 
         jTabbedPaneHelpBase.addTab("CONTENTS", jPanelContents);
@@ -1364,10 +1463,6 @@ public class Base extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldEmpRegNRCNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmpRegNRCNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEmpRegNRCNoActionPerformed
-
     private void jButtonEmpRegResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmpRegResetActionPerformed
         // TODO add your handling code here:
         resetEmpRegPannel();
@@ -1382,39 +1477,14 @@ public class Base extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCustRegResetActionPerformed
 
-    private void jTextFieldItemRegNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldItemRegNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldItemRegNameActionPerformed
-
-    private void jTextFieldItemRegCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldItemRegCodeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldItemRegCodeActionPerformed
-
-    private void jTextFieldItemRegWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldItemRegWeightActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldItemRegWeightActionPerformed
-
-    private void jTextFieldItemRegPrizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldItemRegPrizeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldItemRegPrizeActionPerformed
-
-    private void jComboBoxWhRegSupervisorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxWhRegSupervisorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxWhRegSupervisorActionPerformed
-
-    private void jComboBoxWhRegStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxWhRegStateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxWhRegStateActionPerformed
-
-    private void jComboBoxWhRegCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxWhRegCityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxWhRegCityActionPerformed
-
     private void jButtonWhRegSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonWhRegSaveActionPerformed
         // TODO add your handling code here:
-        //Save Function
-        JOptionPane.showMessageDialog(this, "Save Record Sucessful");
-        resetWarehouseRegPannel();
+        if (saveWhReg()) {
+            JOptionPane.showMessageDialog(this, "Save Record Successful");
+            resetWarehouseRegPannel();
+        } else {
+            JOptionPane.showMessageDialog(this, "Save Record Fail");
+        }
     }//GEN-LAST:event_jButtonWhRegSaveActionPerformed
 
     private void jButtonWhRegResetlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonWhRegResetlActionPerformed
@@ -1425,9 +1495,12 @@ public class Base extends javax.swing.JFrame {
 
     private void jButtonItemRegSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonItemRegSaveActionPerformed
         // TODO add your handling code here:
-        //Save method
-        JOptionPane.showMessageDialog(this, "Save Record Successful");
-        resetItemRegPannel();
+        if (saveItemReg()) {
+            JOptionPane.showMessageDialog(this, "Save Record Successful");
+            resetItemRegPannel();
+        } else {
+            JOptionPane.showMessageDialog(this, "Save Record Fail");
+        }
     }//GEN-LAST:event_jButtonItemRegSaveActionPerformed
 
     private void jButtonItemRegResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonItemRegResetActionPerformed
@@ -1436,26 +1509,24 @@ public class Base extends javax.swing.JFrame {
         resetItemRegPannel();
     }//GEN-LAST:event_jButtonItemRegResetActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        System.out.println("This is testing");
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(jPanelContents, "Hello World");
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButtonEmpRegSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmpRegSaveActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Save Record Successful !");
-        resetEmpRegPannel();
+        if (saveEmpReg()) {
+            JOptionPane.showMessageDialog(this, "Save Record Successful");
+            resetEmpRegPannel();
+        } else {
+            JOptionPane.showMessageDialog(this, "Save Record Fail");
+        }
     }//GEN-LAST:event_jButtonEmpRegSaveActionPerformed
 
     private void jButtonCustRegSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustRegSaveActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Save Record Successful !");
-        resetCustRegPannel();
+        if (saveCustReg()) {
+            JOptionPane.showMessageDialog(this, "Save Record Successful");
+            resetCustRegPannel();
+        } else {
+            JOptionPane.showMessageDialog(this, "Save Record Fail");
+        }
     }//GEN-LAST:event_jButtonCustRegSaveActionPerformed
 
     /**
@@ -1494,8 +1565,7 @@ public class Base extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupCustRegCustomerType;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.ButtonGroup buttonGroupEmpRegTeam;
     private javax.swing.JButton jButtonCustRegReset;
     private javax.swing.JButton jButtonCustRegSave;
     private javax.swing.JButton jButtonEmpRegReset;
@@ -1570,6 +1640,7 @@ public class Base extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelCustomerType;
     private javax.swing.JPanel jPanelDo;
     private javax.swing.JPanel jPanelEmpReg;
+    private javax.swing.JPanel jPanelEmpRegTeam;
     private javax.swing.JPanel jPanelFleetMGMT;
     private javax.swing.JPanel jPanelHRM;
     private javax.swing.JPanel jPanelHelp;
@@ -1591,6 +1662,13 @@ public class Base extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonCustRegPTROutlet;
     private javax.swing.JRadioButton jRadioButtonCustRegRetail;
     private javax.swing.JRadioButton jRadioButtonCustRegWholeslae;
+    private javax.swing.JRadioButton jRadioButtonNoneOfAbove;
+    private javax.swing.JRadioButton jRadioButtonRegional;
+    private javax.swing.JRadioButton jRadioButtonRetail;
+    private javax.swing.JRadioButton jRadioButtonTeamA;
+    private javax.swing.JRadioButton jRadioButtonTeamB;
+    private javax.swing.JRadioButton jRadioButtonTeamC;
+    private javax.swing.JRadioButton jRadioButtonWholesale;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

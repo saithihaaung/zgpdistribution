@@ -16,6 +16,7 @@ import zgpdistribution.util.oops.Customer;
  * @author John
  */
 public class CustomerDAO {
+
     private Connection conn;
 
     public CustomerDAO() {
@@ -25,10 +26,10 @@ public class CustomerDAO {
             System.err.println(e.getMessage());
         }
     }
-    
-    public boolean save(Customer data){
+
+    public boolean save(Customer data) {
         String sql = "insert into customerinfo (outletName, customerName, address,"
-                + "township, city, country, email, phone, coustomerType) value (?,?,?,?,?,?,?,?,?,?)";
+                + "township, city, state, country, email, phone, fax, customerType) value (?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, data.getOutletName());
@@ -40,7 +41,8 @@ public class CustomerDAO {
             ps.setString(7, data.getCountry());
             ps.setString(8, data.getEmail());
             ps.setString(9, data.getPhone());
-            ps.setString(10, data.getCustomerType());
+            ps.setString(10, data.getFax());
+            ps.setString(11, data.getCustomerType());
             ps.executeUpdate();
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -48,15 +50,16 @@ public class CustomerDAO {
         }
         return true;
     }
-    public ArrayList<Customer> queryAll(){
+
+    public ArrayList<Customer> queryAll() {
         String sql = "select * from customerinfo";
         ArrayList<Customer> customerList = null;
         try {
             customerList = new ArrayList<>();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {                
-                customerList.add(new Customer(rs.getString("outletName"), rs.getString("customerName"), rs.getString("address"), rs.getString("twonship"), rs.getString("city"), rs.getString("state"), rs.getString("country"), rs.getString("email"), rs.getString("phone"), rs.getString("customerType")));
+            while (rs.next()) {
+                customerList.add(new Customer(rs.getString("outletName"), rs.getString("customerName"), rs.getString("address"), rs.getString("twonship"), rs.getString("city"), rs.getString("state"), rs.getString("country"), rs.getString("email"), rs.getString("phone"), rs.getString("fax"), rs.getString("customerType")));
             }
             rs.close();
         } catch (Exception e) {
@@ -64,5 +67,4 @@ public class CustomerDAO {
         }
         return customerList;
     }
-    
 }

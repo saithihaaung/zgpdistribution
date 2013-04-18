@@ -29,8 +29,8 @@ public class EmployeeDAO {
 
     public boolean save(Employee data) {
         String sql = "insert into employeeinfo (name, NRC, wPhone, mPhone, "
-                + "jobPosition, dept, deptMgr, address, tsp, city, state, country,email,team) "
-                + "vlaue (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "jobPosition, dept, deptMgr, address, tsp, city, state, country, email, team) "
+                + "value (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, data.getName());
