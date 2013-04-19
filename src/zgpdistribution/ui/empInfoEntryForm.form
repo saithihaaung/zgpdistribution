@@ -302,6 +302,9 @@
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxCityItemStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="jComboBoxState">
               <Properties>

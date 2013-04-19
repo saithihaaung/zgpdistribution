@@ -167,6 +167,11 @@ public class empInfoEntryForm extends javax.swing.JFrame {
         jLabel9.setText("e-mail :");
 
         jComboBoxCity.setToolTipText("");
+        jComboBoxCity.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxCityItemStateChanged(evt);
+            }
+        });
 
         jComboBoxState.setToolTipText("");
 
@@ -369,6 +374,14 @@ public class empInfoEntryForm extends javax.swing.JFrame {
     private void jTextFieldNRCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNRCActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNRCActionPerformed
+
+    private void jComboBoxCityItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCityItemStateChanged
+        // TODO add your handling code here:
+        if(jComboBoxCity.getSelectedItem().toString().equals("YANGON")) {
+            jComboBoxTownship.setEnabled(true);
+        } else
+            jComboBoxTownship.setEnabled(false);
+    }//GEN-LAST:event_jComboBoxCityItemStateChanged
 
     /**
      * @param args the command line arguments
