@@ -315,6 +315,9 @@ public class Base extends javax.swing.JFrame {
         jPanelSMGMT = new javax.swing.JPanel();
         jTabbedPaneSMGMTBase = new javax.swing.JTabbedPane();
         jPanelInvoicing = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jPanelPos = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanelDo = new javax.swing.JPanel();
@@ -460,7 +463,7 @@ public class Base extends javax.swing.JFrame {
         );
         jPanelAccountLayout.setVerticalGroup(
             jPanelAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 632, Short.MAX_VALUE)
+            .addGap(0, 636, Short.MAX_VALUE)
         );
 
         jTabbedPaneBase.addTab("ACCOUNT", jPanelAccount);
@@ -697,7 +700,7 @@ public class Base extends javax.swing.JFrame {
                         .addComponent(jButtonCustRegSave, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonCustRegReset, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 7, Short.MAX_VALUE))))
         );
 
         jTabbedPaneCRMBase.addTab("CUSTOMER REGISTER", jPanelCustReg);
@@ -727,15 +730,34 @@ public class Base extends javax.swing.JFrame {
 
         jPanelInvoicing.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel3.setText("jLabel3");
+
+        jLabel4.setText("jLabel4");
+
+        jLabel5.setText("jLabel5");
+
         javax.swing.GroupLayout jPanelInvoicingLayout = new javax.swing.GroupLayout(jPanelInvoicing);
         jPanelInvoicing.setLayout(jPanelInvoicingLayout);
         jPanelInvoicingLayout.setHorizontalGroup(
             jPanelInvoicingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1205, Short.MAX_VALUE)
+            .addGroup(jPanelInvoicingLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelInvoicingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addContainerGap(1161, Short.MAX_VALUE))
         );
         jPanelInvoicingLayout.setVerticalGroup(
             jPanelInvoicingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
+            .addGroup(jPanelInvoicingLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addContainerGap(503, Short.MAX_VALUE))
         );
 
         jTabbedPaneSMGMTBase.addTab("INVOICING", jPanelInvoicing);
@@ -758,7 +780,7 @@ public class Base extends javax.swing.JFrame {
             .addGroup(jPanelPosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(552, Short.MAX_VALUE))
+                .addContainerGap(553, Short.MAX_VALUE))
         );
 
         jTabbedPaneSMGMTBase.addTab("POS", jPanelPos);
@@ -773,7 +795,7 @@ public class Base extends javax.swing.JFrame {
         );
         jPanelDoLayout.setVerticalGroup(
             jPanelDoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
+            .addGap(0, 578, Short.MAX_VALUE)
         );
 
         jTabbedPaneSMGMTBase.addTab("DO", jPanelDo);
@@ -1354,7 +1376,7 @@ public class Base extends javax.swing.JFrame {
         );
         jPanelFleetMGMTLayout.setVerticalGroup(
             jPanelFleetMGMTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 632, Short.MAX_VALUE)
+            .addGap(0, 636, Short.MAX_VALUE)
         );
 
         jTabbedPaneBase.addTab("FLEET MGMT", jPanelFleetMGMT);
@@ -1376,7 +1398,7 @@ public class Base extends javax.swing.JFrame {
             jPanelReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelReportLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPaneReportBase, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+                .addComponent(jTabbedPaneReportBase, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1396,7 +1418,7 @@ public class Base extends javax.swing.JFrame {
         );
         jPanelContentsLayout.setVerticalGroup(
             jPanelContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
+            .addGap(0, 578, Short.MAX_VALUE)
         );
 
         jTabbedPaneHelpBase.addTab("CONTENTS", jPanelContents);
@@ -1418,7 +1440,7 @@ public class Base extends javax.swing.JFrame {
             jPanelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAboutLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1595,6 +1617,9 @@ public class Base extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelCustRegAddress;
     private javax.swing.JLabel jLabelCustRegCity;
     private javax.swing.JLabel jLabelCustRegCountry;
