@@ -28,7 +28,8 @@ public class customerInformationEntryForm extends javax.swing.JFrame {
         initComponents();
         initFormData();
     }
-    private void initFormData(){
+
+    private void initFormData() {
         jComboBoxTownship.addItem("-- Select One --");
         jComboBoxCity.addItem("-- Select One --");
         jComboBoxState.addItem("-- Select One --");
@@ -50,11 +51,12 @@ public class customerInformationEntryForm extends javax.swing.JFrame {
             for (Country country : countryList) {
                 jComboBoxCountry.addItem(country.getName());
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-            
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -310,10 +312,10 @@ public class customerInformationEntryForm extends javax.swing.JFrame {
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
         // TODO add your handling code here:
-        if(jRadioButtonRetail.isSelected()) {
-            JOptionPane.showMessageDialog(rootPane, jRadioButtonRetail.getText());            
+        if (jRadioButtonRetail.isSelected()) {
+            JOptionPane.showMessageDialog(rootPane, jRadioButtonRetail.getText());
         }
-        
+
         this.dispose();
 
     }//GEN-LAST:event_jButtonCancelActionPerformed
@@ -325,7 +327,7 @@ public class customerInformationEntryForm extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
