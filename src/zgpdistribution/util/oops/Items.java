@@ -11,12 +11,12 @@ package zgpdistribution.util.oops;
 public class Items {
 
     private String itemsName, itemsCode, category, Supplier;
-    private int unitPerGrams, stdPrices;
+    private Double unitPerGrams, stdPrices;
 
     public Items() {
     }
 
-    public Items(String itemsName, String itemsCode, String category, String Supplier, int unitPerGrams, int stdPrices) {
+    public Items(String itemsName, String itemsCode, String category, String Supplier, Double unitPerGrams, Double stdPrices) {
         this.itemsName = itemsName;
         this.itemsCode = itemsCode;
         this.category = category;
@@ -57,19 +57,19 @@ public class Items {
         this.Supplier = Supplier;
     }
 
-    public int getUnitPerGrams() {
+    public Double getUnitPerGrams() {
         return unitPerGrams;
     }
 
-    public void setUnitPerGrams(int unitPerGrams) {
+    public void setUnitPerGrams(Double unitPerGrams) {
         this.unitPerGrams = unitPerGrams;
     }
 
-    public int getStdPrices() {
+    public Double getStdPrices() {
         return stdPrices;
     }
 
-    public void setStdPrices(int stdPrices) {
+    public void setStdPrices(Double stdPrices) {
         this.stdPrices = stdPrices;
     }
 }

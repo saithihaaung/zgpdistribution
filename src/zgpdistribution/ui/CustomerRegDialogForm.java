@@ -25,6 +25,8 @@ import zgpdistribution.util.oops.Township;
  */
 public class CustomerRegDialogForm extends javax.swing.JDialog {
 
+    private boolean status = false;
+
     /**
      * Creates new form CustomerRegDialogForm
      */
@@ -32,9 +34,6 @@ public class CustomerRegDialogForm extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         initFormData();
-    }
-
-    public CustomerRegDialogForm() {
     }
 
     private void initFormData() {
@@ -104,7 +103,7 @@ public class CustomerRegDialogForm extends javax.swing.JDialog {
         jTextFieldCustRegFax = new javax.swing.JTextField();
         jLabelCustRegCustType = new javax.swing.JLabel();
         jComboBoxCustRegCustType = new javax.swing.JComboBox();
-        jButtonCustRegReset = new javax.swing.JButton();
+        jButtonCustRegCancel = new javax.swing.JButton();
         jButtonCustRegSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -142,10 +141,10 @@ public class CustomerRegDialogForm extends javax.swing.JDialog {
 
         jLabelCustRegCustType.setText("Customer Type : ");
 
-        jButtonCustRegReset.setText("Reset");
-        jButtonCustRegReset.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCustRegCancel.setText("Cancel");
+        jButtonCustRegCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustRegResetActionPerformed(evt);
+                jButtonCustRegCancelActionPerformed(evt);
             }
         });
 
@@ -190,7 +189,7 @@ public class CustomerRegDialogForm extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonCustRegSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCustRegReset, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
+                    .addComponent(jButtonCustRegCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -249,7 +248,7 @@ public class CustomerRegDialogForm extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonCustRegSave, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonCustRegReset, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonCustRegCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -266,14 +265,17 @@ public class CustomerRegDialogForm extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jComboBoxCustRegCityItemStateChanged
 
-    private void jButtonCustRegResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustRegResetActionPerformed
+    private void jButtonCustRegCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustRegCancelActionPerformed
         // TODO add your handling code here:
+        status = false;
         JOptionPane.showMessageDialog(this, "Distory Operation Successful");
         resetCustRegPannel();
-    }//GEN-LAST:event_jButtonCustRegResetActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonCustRegCancelActionPerformed
 
     private void jButtonCustRegSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustRegSaveActionPerformed
         // TODO add your handling code here:
+        status = true;
         if (saveCustReg()) {
             JOptionPane.showMessageDialog(this, "Save Record Successful");
             resetCustRegPannel();
@@ -282,6 +284,11 @@ public class CustomerRegDialogForm extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Save Record Fail");
         }
     }//GEN-LAST:event_jButtonCustRegSaveActionPerformed
+
+    public boolean showForm() {
+        this.setVisible(true);
+        return status;
+    }
 
     /**
      * @param args the command line arguments
@@ -355,7 +362,7 @@ public class CustomerRegDialogForm extends javax.swing.JDialog {
         return new CustomerDAO().save(cust);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCustRegReset;
+    private javax.swing.JButton jButtonCustRegCancel;
     private javax.swing.JButton jButtonCustRegSave;
     private javax.swing.JComboBox jComboBoxCustRegCity;
     private javax.swing.JComboBox jComboBoxCustRegCountry;

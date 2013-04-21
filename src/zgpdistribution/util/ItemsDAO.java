@@ -36,10 +36,10 @@ public class ItemsDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, data.getItemsName());
             ps.setString(2, data.getItemsCode());
-            ps.setInt(3, data.getUnitPerGrams());
+            ps.setDouble(3, data.getUnitPerGrams());
             ps.setString(4, data.getCategory());
             ps.setString(5, data.getSupplier());
-            ps.setInt(6, data.getStdPrices());
+            ps.setDouble(6, data.getStdPrices());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ItemsDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -58,7 +58,7 @@ public class ItemsDAO {
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 itemsList.add(new Items(rs.getString("itemsName"), rs.getString("itemsCode"), rs.getString("category"),
-                        rs.getString("supplier"), rs.getInt("unitsPerGrams"), rs.getInt("stdPrices")));
+                        rs.getString("supplier"), rs.getDouble("unitsPerGrams"), rs.getDouble("stdPrices")));
             }
             rs.close();
         } catch (SQLException ex) {

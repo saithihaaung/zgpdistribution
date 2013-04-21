@@ -766,8 +766,14 @@
                           <StringArray count="0"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxSmgmtInvIncSCodeItemStateChanged"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldSmgmtInvIncQty">
+                      <Events>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldSmgmtInvIncQtyKeyReleased"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabelSmgmtInvPrizeShow">
                       <Properties>

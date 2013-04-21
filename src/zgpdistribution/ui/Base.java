@@ -4,6 +4,8 @@
  */
 package zgpdistribution.ui;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +45,9 @@ import zgpdistribution.util.oops.Warehouse;
  */
 public class Base extends javax.swing.JFrame {
 
-    private Map<String, City> m = null;
+    private Double smgmtInvTPrizeShow;
+    private Map<String, City> mCity = null;
+    private Map<String, Items> mItems = null;
 
     /**
      * Creates new form Base
@@ -55,11 +59,15 @@ public class Base extends javax.swing.JFrame {
     }
 
     private void fillCombo() {
-        m = new HashMap<>();
+        mCity = new HashMap<>();
+        mItems = new HashMap<>();
         for (City city : new CityDAO().queryAll()) {
-            m.put(city.getCode(), city);
-            //jComboBoxCityCode.addItem(city.getCode());
+            mCity.put(city.getCode(), city);
             jComboBoxSmgmtInvIncLo.addItem(city.getCode());
+        }
+        for (Items items : new ItemsDAO().queryAll()) {
+            mItems.put(items.getItemsCode(), items);
+            jComboBoxSmgmtInvIncSCode.addItem(items.getItemsCode());
         }
     }
 
@@ -270,10 +278,10 @@ public class Base extends javax.swing.JFrame {
         Items item = new Items();
         item.setItemsName(jTextFieldItemRegName.getText().trim());
         item.setItemsCode(jTextFieldItemRegCode.getText().trim());
-        item.setUnitPerGrams(Integer.parseInt(jTextFieldItemRegWeight.getText().trim()));
+        item.setUnitPerGrams(Double.parseDouble(jTextFieldItemRegWeight.getText().trim()));
         item.setCategory(jComboBoxItemRegCategory.getSelectedItem().toString());
         item.setSupplier(jComboBoxItemRegSupplier.getSelectedItem().toString());
-        item.setStdPrices(Integer.parseInt(jTextFieldItemRegPrize.getText().trim()));
+        item.setStdPrices(Double.parseDouble(jTextFieldItemRegPrize.getText().trim()));
         return new ItemsDAO().save(item);
     }
 
@@ -731,6 +739,18 @@ public class Base extends javax.swing.JFrame {
         jComboBoxSmgmtInvIncLo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxSmgmtInvIncLoItemStateChanged(evt);
+            }
+        });
+
+        jComboBoxSmgmtInvIncSCode.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxSmgmtInvIncSCodeItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldSmgmtInvIncQty.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldSmgmtInvIncQtyKeyReleased(evt);
             }
         });
 
@@ -1754,10 +1774,52 @@ public class Base extends javax.swing.JFrame {
 
     private void jComboBoxSmgmtInvIncLoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxSmgmtInvIncLoItemStateChanged
         // TODO add your handling code here:
-        if (m != null && !evt.getItem().toString().equalsIgnoreCase("-- Select One --")) {
-            jLabelSmgmtInvIncLoLong.setText(m.get(evt.getItem().toString()).getName());
+        if (mCity != null && !evt.getItem().toString().equalsIgnoreCase("-- Select One --")) {
+            jLabelSmgmtInvIncLoLong.setText(mCity.get(evt.getItem().toString()).getName());
         }
     }//GEN-LAST:event_jComboBoxSmgmtInvIncLoItemStateChanged
+
+    private void jComboBoxSmgmtInvIncSCodeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxSmgmtInvIncSCodeItemStateChanged
+        // TODO add your handling code here:
+        String tempDisp;
+        if (mItems != null && !evt.getItem().toString().equalsIgnoreCase("-- Select One --")) {
+            jLabelSmgmtInvIncSCodeLong.setText(mItems.get(evt.getItem().toString()).getItemsName());
+            tempDisp = mItems.get(evt.getItem().toString()).getStdPrices().toString();
+            smgmtInvTPrizeShow = Double.parseDouble(tempDisp);
+            jLabelSmgmtInvPrizeShow.setText(tempDisp);
+        }
+    }//GEN-LAST:event_jComboBoxSmgmtInvIncSCodeItemStateChanged
+
+    private void jTextFieldSmgmtInvIncQtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSmgmtInvIncQtyKeyReleased
+        // TODO add your handling code here:
+        //jComboBoxSmgmtInvIncLo.setSelectedItem("YGN");
+        NumberFormat nf = new DecimalFormat("###,###,###,###,###,###,###,###.###");
+        if (smgmtInvTPrizeShow == 700) {
+            int total = (Integer.parseInt(jTextFieldSmgmtInvIncQty.getText()));
+            int ctn = (Integer.parseInt(jTextFieldSmgmtInvIncQty.getText()) / 24);
+            int pkg = total - (ctn * 24);
+
+            if (pkg == 0) {
+                jLabelSmgmtInvIncQtyPkg.setText(ctn + " Carton");
+                jLabelSmgmtInvTPrizeShow.setText(nf.format(total * smgmtInvTPrizeShow));
+            } else {
+                jLabelSmgmtInvIncQtyPkg.setText(ctn + " Carton  " + pkg + " Package");
+                jLabelSmgmtInvTPrizeShow.setText(nf.format(total * smgmtInvTPrizeShow));
+            }
+        } else {
+            int total = (Integer.parseInt(jTextFieldSmgmtInvIncQty.getText()));
+            int ctn = (Integer.parseInt(jTextFieldSmgmtInvIncQty.getText()) / 24);
+            int pkg = total - (ctn * 24);
+
+            if (pkg == 0) {
+                jLabelSmgmtInvIncQtyPkg.setText(ctn + " Carton");
+                jLabelSmgmtInvTPrizeShow.setText(nf.format(total * smgmtInvTPrizeShow));
+            } else {
+                jLabelSmgmtInvIncQtyPkg.setText(ctn + " Carton  " + pkg + " Package");
+                jLabelSmgmtInvTPrizeShow.setText(nf.format(total * smgmtInvTPrizeShow));
+            }
+        }
+    }//GEN-LAST:event_jTextFieldSmgmtInvIncQtyKeyReleased
 
     /**
      * @param args the command line arguments
