@@ -5,6 +5,8 @@
 package zgpdistribution.ui;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import zgpdistribution.util.CategoryDAO;
 import zgpdistribution.util.CityDAO;
@@ -41,12 +43,24 @@ import zgpdistribution.util.oops.Warehouse;
  */
 public class Base extends javax.swing.JFrame {
 
+    private Map<String, City> m = null;
+
     /**
      * Creates new form Base
      */
     public Base() {
         initComponents();
         initFormData();
+        fillCombo();
+    }
+
+    private void fillCombo() {
+        m = new HashMap<>();
+        for (City city : new CityDAO().queryAll()) {
+            m.put(city.getCode(), city);
+            //jComboBoxCityCode.addItem(city.getCode());
+            jComboBoxSmgmtInvIncLo.addItem(city.getCode());
+        }
     }
 
     private void initFormData() {
@@ -107,7 +121,7 @@ public class Base extends javax.swing.JFrame {
                 jComboBoxEmpRegCity.addItem(city.getName());
                 jComboBoxCustRegCity.addItem(city.getName());
                 jComboBoxWhRegCity.addItem(city.getName());
-                jComboBoxSmgmtInvIncLo.addItem(city.getName());
+                jComboBoxSmgmtInvIncLo.addItem(city.getCode());
             }
             ArrayList<State> stateList = new StateDAO().queryAll();
             for (State state : stateList) {
@@ -207,7 +221,6 @@ public class Base extends javax.swing.JFrame {
 
     private boolean saveCustReg() {
         Customer cust = new Customer();
-        String custType;
         cust.setOutletName(jTextFieldCustRegOutletName.getText().trim());
         cust.setCustomerName(jTextFieldCustRegCustomerName.getText().toUpperCase().trim());
         cust.setAddress(jTextAreaCustRegAddress.getText().trim());
@@ -347,7 +360,6 @@ public class Base extends javax.swing.JFrame {
         jTextFieldSmgmtPosIncQty = new javax.swing.JTextField();
         jComboBoxSmgmtPosIncSCode = new javax.swing.JComboBox();
         jComboBoxSmgmtPosSaleby = new javax.swing.JComboBox();
-        jComboBoxSmgmtPosCustName = new javax.swing.JComboBox();
         jLabelSmgmtPosVCNo = new javax.swing.JLabel();
         jLabelSmgmtPosCustName = new javax.swing.JLabel();
         jLabelSmgmtPosSaleby = new javax.swing.JLabel();
@@ -359,10 +371,10 @@ public class Base extends javax.swing.JFrame {
         jLabelSmgmtPosPrizeShow = new javax.swing.JLabel();
         jLabelDiscountItem = new javax.swing.JLabel();
         jCheckBoxjLabelDiscountItem = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
         jXDatePickerSmgmtPosDate = new org.jdesktop.swingx.JXDatePicker();
         jTextFieldSmgmtPosVCNo = new javax.swing.JTextField();
         jLabelSmgmtPosDate = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jPanelDo = new javax.swing.JPanel();
         jPanelHRM = new javax.swing.JPanel();
         jTabbedPaneHRBase = new javax.swing.JTabbedPane();
@@ -462,11 +474,11 @@ public class Base extends javax.swing.JFrame {
         jPanelCompanyReg.setLayout(jPanelCompanyRegLayout);
         jPanelCompanyRegLayout.setHorizontalGroup(
             jPanelCompanyRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1224, Short.MAX_VALUE)
+            .addGap(0, 1244, Short.MAX_VALUE)
         );
         jPanelCompanyRegLayout.setVerticalGroup(
             jPanelCompanyRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 567, Short.MAX_VALUE)
+            .addGap(0, 589, Short.MAX_VALUE)
         );
 
         jTabbedPaneSetupBase.addTab("COMPANY REG", jPanelCompanyReg);
@@ -475,17 +487,11 @@ public class Base extends javax.swing.JFrame {
         jPanelSetup.setLayout(jPanelSetupLayout);
         jPanelSetupLayout.setHorizontalGroup(
             jPanelSetupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSetupLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneSetupBase)
-                .addContainerGap())
+            .addComponent(jTabbedPaneSetupBase)
         );
         jPanelSetupLayout.setVerticalGroup(
             jPanelSetupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSetupLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneSetupBase)
-                .addContainerGap())
+            .addComponent(jTabbedPaneSetupBase)
         );
 
         jTabbedPaneBase.addTab("SETUP", jPanelSetup);
@@ -515,11 +521,11 @@ public class Base extends javax.swing.JFrame {
         jPanelSupplierREG.setLayout(jPanelSupplierREGLayout);
         jPanelSupplierREGLayout.setHorizontalGroup(
             jPanelSupplierREGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1224, Short.MAX_VALUE)
+            .addGap(0, 1244, Short.MAX_VALUE)
         );
         jPanelSupplierREGLayout.setVerticalGroup(
             jPanelSupplierREGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 567, Short.MAX_VALUE)
+            .addGap(0, 589, Short.MAX_VALUE)
         );
 
         jTabbedPaneSRMBase.addTab("SUPPLIER REG", jPanelSupplierREG);
@@ -528,17 +534,11 @@ public class Base extends javax.swing.JFrame {
         jPanelSRM.setLayout(jPanelSRMLayout);
         jPanelSRMLayout.setHorizontalGroup(
             jPanelSRMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSRMLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneSRMBase)
-                .addContainerGap())
+            .addComponent(jTabbedPaneSRMBase)
         );
         jPanelSRMLayout.setVerticalGroup(
             jPanelSRMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSRMLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneSRMBase)
-                .addContainerGap())
+            .addComponent(jTabbedPaneSRMBase)
         );
 
         jTabbedPaneBase.addTab("SRM", jPanelSRM);
@@ -613,7 +613,7 @@ public class Base extends javax.swing.JFrame {
                     .addComponent(jLabelCustRegFax)
                     .addComponent(jLabeCustReglTownship)
                     .addComponent(jLabelCustRegAddress))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldCustRegOutletName, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldCustRegCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -628,7 +628,7 @@ public class Base extends javax.swing.JFrame {
                     .addComponent(jComboBoxCustRegCustType, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonCustRegReset, javax.swing.GroupLayout.DEFAULT_SIZE, 913, Short.MAX_VALUE)
+                    .addComponent(jButtonCustRegReset, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE)
                     .addComponent(jButtonCustRegSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -689,7 +689,7 @@ public class Base extends javax.swing.JFrame {
                         .addComponent(jButtonCustRegSave, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonCustRegReset, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 14, Short.MAX_VALUE))))
+                        .addGap(0, 36, Short.MAX_VALUE))))
         );
 
         jTabbedPaneCRMBase.addTab("CUSTOMER REGISTER", jPanelCustReg);
@@ -698,17 +698,11 @@ public class Base extends javax.swing.JFrame {
         jPanelCRM.setLayout(jPanelCRMLayout);
         jPanelCRMLayout.setHorizontalGroup(
             jPanelCRMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCRMLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneCRMBase)
-                .addContainerGap())
+            .addComponent(jTabbedPaneCRMBase)
         );
         jPanelCRMLayout.setVerticalGroup(
             jPanelCRMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCRMLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneCRMBase)
-                .addContainerGap())
+            .addComponent(jTabbedPaneCRMBase)
         );
 
         jTabbedPaneBase.addTab("CRM", jPanelCRM);
@@ -734,6 +728,11 @@ public class Base extends javax.swing.JFrame {
         jLabelSmgmtInvTPrize.setText("Total Prize :");
 
         jComboBoxSmgmtInvIncLo.setToolTipText("");
+        jComboBoxSmgmtInvIncLo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxSmgmtInvIncLoItemStateChanged(evt);
+            }
+        });
 
         jLabelSmgmtInvPrizeShow.setText("jLabel10");
 
@@ -747,24 +746,28 @@ public class Base extends javax.swing.JFrame {
 
         jTableSmgmtInvTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "No.", "Stock Code", "Description", "Quantity", "Unit Prize", "Tax", "Amount"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane4.setViewportView(jTableSmgmtInvTable);
+        jTableSmgmtInvTable.getColumnModel().getColumn(0).setResizable(false);
+        jTableSmgmtInvTable.getColumnModel().getColumn(1).setResizable(false);
+        jTableSmgmtInvTable.getColumnModel().getColumn(2).setResizable(false);
+        jTableSmgmtInvTable.getColumnModel().getColumn(3).setResizable(false);
+        jTableSmgmtInvTable.getColumnModel().getColumn(4).setResizable(false);
+        jTableSmgmtInvTable.getColumnModel().getColumn(5).setResizable(false);
+        jTableSmgmtInvTable.getColumnModel().getColumn(6).setResizable(false);
 
         jButtonSmgmtInvAdd.setText("Add");
 
@@ -810,7 +813,7 @@ public class Base extends javax.swing.JFrame {
                         .addGap(133, 133, 133)
                         .addComponent(jScrollPane4))
                     .addGroup(jPanelInvoicingLayout.createSequentialGroup()
-                        .addComponent(jButtonSmgmtInvAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                        .addComponent(jButtonSmgmtInvAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonSmgmtInvSV, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -853,7 +856,7 @@ public class Base extends javax.swing.JFrame {
                         .addGroup(jPanelInvoicingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelSmgmtInvTPrize)
                             .addComponent(jLabelSmgmtInvTPrizeShow))
-                        .addGap(0, 43, Short.MAX_VALUE))
+                        .addGap(0, 65, Short.MAX_VALUE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelInvoicingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -882,24 +885,28 @@ public class Base extends javax.swing.JFrame {
 
         jTableSmgmtPosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "No.", "Stock Code", "Description", "Quantity", "Unit Prize", "Tax", "Amount"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane5.setViewportView(jTableSmgmtPosTable);
+        jTableSmgmtPosTable.getColumnModel().getColumn(0).setResizable(false);
+        jTableSmgmtPosTable.getColumnModel().getColumn(1).setResizable(false);
+        jTableSmgmtPosTable.getColumnModel().getColumn(2).setResizable(false);
+        jTableSmgmtPosTable.getColumnModel().getColumn(3).setResizable(false);
+        jTableSmgmtPosTable.getColumnModel().getColumn(4).setResizable(false);
+        jTableSmgmtPosTable.getColumnModel().getColumn(5).setResizable(false);
+        jTableSmgmtPosTable.getColumnModel().getColumn(6).setResizable(false);
 
         jLabelSmgmtInvIncSCodeLong1.setText("jLabel13");
 
@@ -927,8 +934,6 @@ public class Base extends javax.swing.JFrame {
 
         jCheckBoxjLabelDiscountItem.setText("YES");
 
-        jButton1.setText("NEW");
-
         jXDatePickerSmgmtPosDate.setName(""); // NOI18N
 
         jLabelSmgmtPosDate.setText("Date : ");
@@ -940,50 +945,40 @@ public class Base extends javax.swing.JFrame {
             .addGroup(jPanelPosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPosLayout.createSequentialGroup()
-                        .addComponent(jCheckBoxjLabelDiscountItem)
-                        .addGap(264, 264, 264))
+                    .addComponent(jButtonSmgmtPosAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelPosLayout.createSequentialGroup()
-                        .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanelPosLayout.createSequentialGroup()
-                                .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelSmgmtPosCustName)
-                                    .addComponent(jLabelSmgmtPosSaleby)
-                                    .addComponent(jLabelSmgmtPosIncSCode)
-                                    .addComponent(jLabelSmgmtPosSQty)
-                                    .addComponent(jLabelSmgmtPosPrize)
-                                    .addComponent(jLabelDiscountItem)
-                                    .addComponent(jLabelSmgmtPosVCNo)
-                                    .addComponent(jLabelSmgmtPosDate))
-                                .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPosLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jComboBoxSmgmtPosCustName, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jXDatePickerSmgmtPosDate, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBoxSmgmtPosSaleby, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanelPosLayout.createSequentialGroup()
-                                        .addGap(23, 23, 23)
-                                        .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jComboBoxSmgmtPosIncSCode, 0, 148, Short.MAX_VALUE)
-                                                .addComponent(jTextFieldSmgmtPosIncQty))
-                                            .addComponent(jTextFieldSmgmtPosVCNo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(jPanelPosLayout.createSequentialGroup()
-                                .addGap(106, 106, 106)
-                                .addComponent(jLabelSmgmtPosPrizeShow)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelSmgmtPosTPrize)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jLabelSmgmtInvIncSCodeLong1)
-                            .addComponent(jLabelSmgmtInvIncQtyPkg1)
-                            .addComponent(jLabelSmgmtPosTPrizeShow))
-                        .addGap(99, 99, 99))
-                    .addGroup(jPanelPosLayout.createSequentialGroup()
-                        .addComponent(jButtonSmgmtPosAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                            .addComponent(jLabelSmgmtPosCustName)
+                            .addComponent(jLabelSmgmtPosSaleby)
+                            .addComponent(jLabelSmgmtPosIncSCode)
+                            .addComponent(jLabelSmgmtPosSQty)
+                            .addComponent(jLabelSmgmtPosPrize)
+                            .addComponent(jLabelSmgmtPosVCNo)
+                            .addComponent(jLabelSmgmtPosDate)
+                            .addComponent(jLabelDiscountItem))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxjLabelDiscountItem)
+                            .addGroup(jPanelPosLayout.createSequentialGroup()
+                                .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanelPosLayout.createSequentialGroup()
+                                        .addComponent(jLabelSmgmtPosPrizeShow)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabelSmgmtPosTPrize))
+                                    .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextFieldSmgmtPosVCNo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jXDatePickerSmgmtPosDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextField1)
+                                        .addComponent(jComboBoxSmgmtPosSaleby, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jComboBoxSmgmtPosIncSCode, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextFieldSmgmtPosIncQty)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelSmgmtInvIncSCodeLong1)
+                                    .addComponent(jLabelSmgmtInvIncQtyPkg1)
+                                    .addComponent(jLabelSmgmtPosTPrizeShow))))
+                        .addGap(0, 119, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelPosLayout.createSequentialGroup()
                         .addComponent(jButtonSmgmtPosSave, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -992,11 +987,17 @@ public class Base extends javax.swing.JFrame {
                     .addComponent(jScrollPane5))
                 .addContainerGap())
         );
+
+        jPanelPosLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jComboBoxSmgmtPosIncSCode, jComboBoxSmgmtPosSaleby, jTextField1, jTextFieldSmgmtPosIncQty, jTextFieldSmgmtPosVCNo, jXDatePickerSmgmtPosDate});
+
         jPanelPosLayout.setVerticalGroup(
             jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelPosLayout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
                     .addGroup(jPanelPosLayout.createSequentialGroup()
                         .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelSmgmtPosVCNo)
@@ -1005,11 +1006,10 @@ public class Base extends javax.swing.JFrame {
                         .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jXDatePickerSmgmtPosDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelSmgmtPosDate))
-                        .addGap(8, 8, 8)
+                        .addGap(9, 9, 9)
                         .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelSmgmtPosCustName)
-                            .addComponent(jComboBoxSmgmtPosCustName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelSmgmtPosSaleby)
@@ -1024,18 +1024,17 @@ public class Base extends javax.swing.JFrame {
                             .addComponent(jLabelSmgmtPosSQty)
                             .addComponent(jTextFieldSmgmtPosIncQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelSmgmtInvIncQtyPkg1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelSmgmtPosPrize)
                             .addComponent(jLabelSmgmtPosPrizeShow)
-                            .addComponent(jLabelSmgmtPosTPrize)
-                            .addComponent(jLabelSmgmtPosTPrizeShow))
+                            .addComponent(jLabelSmgmtPosTPrizeShow)
+                            .addComponent(jLabelSmgmtPosPrize)
+                            .addComponent(jLabelSmgmtPosTPrize))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelDiscountItem)
-                            .addComponent(jCheckBoxjLabelDiscountItem)))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                            .addComponent(jCheckBoxjLabelDiscountItem))
+                        .addGap(32, 50, Short.MAX_VALUE)))
                 .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSmgmtPosAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSmgmtPosReset, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1043,7 +1042,7 @@ public class Base extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanelPosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jComboBoxSmgmtPosCustName, jComboBoxSmgmtPosIncSCode, jComboBoxSmgmtPosSaleby, jTextFieldSmgmtPosIncQty, jXDatePickerSmgmtPosDate});
+        jPanelPosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jComboBoxSmgmtPosIncSCode, jComboBoxSmgmtPosSaleby, jTextField1, jTextFieldSmgmtPosIncQty, jTextFieldSmgmtPosVCNo, jXDatePickerSmgmtPosDate});
 
         jTabbedPaneSMGMTBase.addTab("POS", jPanelPos);
 
@@ -1053,11 +1052,11 @@ public class Base extends javax.swing.JFrame {
         jPanelDo.setLayout(jPanelDoLayout);
         jPanelDoLayout.setHorizontalGroup(
             jPanelDoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1232, Short.MAX_VALUE)
+            .addGap(0, 1252, Short.MAX_VALUE)
         );
         jPanelDoLayout.setVerticalGroup(
             jPanelDoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
+            .addGap(0, 607, Short.MAX_VALUE)
         );
 
         jTabbedPaneSMGMTBase.addTab("DO", jPanelDo);
@@ -1066,17 +1065,11 @@ public class Base extends javax.swing.JFrame {
         jPanelSMGMT.setLayout(jPanelSMGMTLayout);
         jPanelSMGMTLayout.setHorizontalGroup(
             jPanelSMGMTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSMGMTLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneSMGMTBase, javax.swing.GroupLayout.PREFERRED_SIZE, 1245, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jTabbedPaneSMGMTBase)
         );
         jPanelSMGMTLayout.setVerticalGroup(
             jPanelSMGMTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSMGMTLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneSMGMTBase)
-                .addContainerGap())
+            .addComponent(jTabbedPaneSMGMTBase)
         );
 
         jTabbedPaneBase.addTab("SMGMT", jPanelSMGMT);
@@ -1154,6 +1147,9 @@ public class Base extends javax.swing.JFrame {
                             .addComponent(jComboBoxEmpRegState, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
+
+        jPanelPersonalLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jComboBoxEmpRegCity, jComboBoxEmpRegCountry, jComboBoxEmpRegState, jComboBoxEmpRegTownship, jScrollPane1, jTextFieldEmpRegEmail, jTextFieldEmpRegMPhone, jTextFieldEmpRegNRCNo, jTextFieldEmpRegName});
+
         jPanelPersonalLayout.setVerticalGroup(
             jPanelPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPersonalLayout.createSequentialGroup()
@@ -1193,7 +1189,7 @@ public class Base extends javax.swing.JFrame {
                 .addGroup(jPanelPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelEmpRegEmail)
                     .addComponent(jTextFieldEmpRegEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         jPanelWork.setBorder(javax.swing.BorderFactory.createTitledBorder("Work Information"));
@@ -1294,7 +1290,7 @@ public class Base extends javax.swing.JFrame {
                     .addGroup(jPanelEmpRegLayout.createSequentialGroup()
                         .addComponent(jPanelWork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonEmpRegSave, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE))
+                        .addComponent(jButtonEmpRegSave, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE))
                     .addComponent(jButtonEmpRegReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1319,17 +1315,11 @@ public class Base extends javax.swing.JFrame {
         jPanelHRM.setLayout(jPanelHRMLayout);
         jPanelHRMLayout.setHorizontalGroup(
             jPanelHRMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelHRMLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneHRBase)
-                .addContainerGap())
+            .addComponent(jTabbedPaneHRBase)
         );
         jPanelHRMLayout.setVerticalGroup(
             jPanelHRMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelHRMLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneHRBase)
-                .addContainerGap())
+            .addComponent(jTabbedPaneHRBase)
         );
 
         jTabbedPaneBase.addTab("HRM", jPanelHRM);
@@ -1407,7 +1397,7 @@ public class Base extends javax.swing.JFrame {
                             .addComponent(jComboBoxWhRegTownship, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxWhRegCity, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonWhRegResetl, javax.swing.GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)))
+                        .addComponent(jButtonWhRegResetl, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelWHREGLayout.setVerticalGroup(
@@ -1445,7 +1435,7 @@ public class Base extends javax.swing.JFrame {
             .addGroup(jPanelWHREGLayout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addComponent(jButtonWhRegSave, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jButtonWhRegResetl, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1498,9 +1488,9 @@ public class Base extends javax.swing.JFrame {
                     .addComponent(jLabelItemRegCode))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxItemRegSupplier, 0, 177, Short.MAX_VALUE)
+                    .addComponent(jComboBoxItemRegSupplier, 0, 187, Short.MAX_VALUE)
                     .addComponent(jComboBoxItemRegCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldItemRegCode, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                    .addComponent(jTextFieldItemRegCode, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                     .addComponent(jTextFieldItemRegName)
                     .addGroup(jPanelItemRegLayout.createSequentialGroup()
                         .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1512,8 +1502,8 @@ public class Base extends javax.swing.JFrame {
                                 .addComponent(jTextFieldItemRegWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabelGrams)))
-                        .addGap(0, 49, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addGap(0, 59, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonItemRegReset, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
                     .addComponent(jButtonItemRegSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1551,7 +1541,7 @@ public class Base extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanelItemRegLayout.createSequentialGroup()
                 .addComponent(jButtonItemRegSave, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(jButtonItemRegReset, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1561,17 +1551,11 @@ public class Base extends javax.swing.JFrame {
         jPanelWhManagement.setLayout(jPanelWhManagementLayout);
         jPanelWhManagementLayout.setHorizontalGroup(
             jPanelWhManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelWhManagementLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneWHMGMTBase)
-                .addContainerGap())
+            .addComponent(jTabbedPaneWHMGMTBase)
         );
         jPanelWhManagementLayout.setVerticalGroup(
             jPanelWhManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelWhManagementLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneWHMGMTBase)
-                .addContainerGap())
+            .addComponent(jTabbedPaneWHMGMTBase)
         );
 
         jTabbedPaneBase.addTab("WHMGMT", jPanelWhManagement);
@@ -1599,17 +1583,11 @@ public class Base extends javax.swing.JFrame {
         jPanelReport.setLayout(jPanelReportLayout);
         jPanelReportLayout.setHorizontalGroup(
             jPanelReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelReportLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneReportBase, javax.swing.GroupLayout.DEFAULT_SIZE, 1245, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jTabbedPaneReportBase, javax.swing.GroupLayout.DEFAULT_SIZE, 1265, Short.MAX_VALUE)
         );
         jPanelReportLayout.setVerticalGroup(
             jPanelReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelReportLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneReportBase, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jTabbedPaneReportBase, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
         );
 
         jTabbedPaneBase.addTab("REPORT", jPanelReport);
@@ -1624,11 +1602,11 @@ public class Base extends javax.swing.JFrame {
         jPanelContents.setLayout(jPanelContentsLayout);
         jPanelContentsLayout.setHorizontalGroup(
             jPanelContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1232, Short.MAX_VALUE)
+            .addGap(0, 1252, Short.MAX_VALUE)
         );
         jPanelContentsLayout.setVerticalGroup(
             jPanelContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
+            .addGap(0, 607, Short.MAX_VALUE)
         );
 
         jTabbedPaneHelpBase.addTab("CONTENTS", jPanelContents);
@@ -1643,14 +1621,14 @@ public class Base extends javax.swing.JFrame {
             jPanelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAboutLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1212, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1232, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelAboutLayout.setVerticalGroup(
             jPanelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAboutLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1660,17 +1638,11 @@ public class Base extends javax.swing.JFrame {
         jPanelHelp.setLayout(jPanelHelpLayout);
         jPanelHelpLayout.setHorizontalGroup(
             jPanelHelpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelHelpLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneHelpBase)
-                .addContainerGap())
+            .addComponent(jTabbedPaneHelpBase)
         );
         jPanelHelpLayout.setVerticalGroup(
             jPanelHelpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelHelpLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneHelpBase)
-                .addContainerGap())
+            .addComponent(jTabbedPaneHelpBase)
         );
 
         jTabbedPaneBase.addTab("Help", jPanelHelp);
@@ -1780,6 +1752,13 @@ public class Base extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBoxEmpRegCityItemStateChanged
 
+    private void jComboBoxSmgmtInvIncLoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxSmgmtInvIncLoItemStateChanged
+        // TODO add your handling code here:
+        if (m != null && !evt.getItem().toString().equalsIgnoreCase("-- Select One --")) {
+            jLabelSmgmtInvIncLoLong.setText(m.get(evt.getItem().toString()).getName());
+        }
+    }//GEN-LAST:event_jComboBoxSmgmtInvIncLoItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -1817,7 +1796,6 @@ public class Base extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupCustRegCustomerType;
     private javax.swing.ButtonGroup buttonGroupEmpRegTeam;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCustRegReset;
     private javax.swing.JButton jButtonCustRegSave;
     private javax.swing.JButton jButtonEmpRegReset;
@@ -1852,7 +1830,6 @@ public class Base extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxSmgmtInvIncLo;
     private javax.swing.JComboBox jComboBoxSmgmtInvIncSCode;
     private javax.swing.JComboBox jComboBoxSmgmtInvSaleby;
-    private javax.swing.JComboBox jComboBoxSmgmtPosCustName;
     private javax.swing.JComboBox jComboBoxSmgmtPosIncSCode;
     private javax.swing.JComboBox jComboBoxSmgmtPosSaleby;
     private javax.swing.JComboBox jComboBoxWhRegCity;
@@ -1967,6 +1944,7 @@ public class Base extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaCustRegAddress;
     private javax.swing.JTextArea jTextAreaEmpRegAddress;
     private javax.swing.JTextArea jTextAreaWhRegAddress;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldCustRegCustomerName;
     private javax.swing.JTextField jTextFieldCustRegEmail;
     private javax.swing.JTextField jTextFieldCustRegFax;
