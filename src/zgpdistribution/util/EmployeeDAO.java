@@ -57,7 +57,7 @@ public class EmployeeDAO {
     }
 
     public ArrayList<Employee> queryAll() {
-        String sql = "select * from employeeinfo";
+        String sql = "select * from employeeinfo order by name asc";
         ArrayList<Employee> employeeList = null;
         try {
             employeeList = new ArrayList<>();

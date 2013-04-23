@@ -52,7 +52,7 @@ public class CustomerDAO {
     }
 
     public ArrayList<Customer> queryAll() {
-        String sql = "select * from customerinfo";
+        String sql = "select * from customerinfo order by outletName asc";
         ArrayList<Customer> customerList = null;
         try {
             customerList = new ArrayList<>();

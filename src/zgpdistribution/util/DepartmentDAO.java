@@ -29,8 +29,8 @@ public class DepartmentDAO {
             System.err.println(e.getMessage());
         }
     }
-    
-    public boolean save(Department data){
+
+    public boolean save(Department data) {
         String sql = "insert into dept(name)value(?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -40,25 +40,26 @@ public class DepartmentDAO {
         } catch (SQLException ex) {
             Logger.getLogger(DepartmentDAO.class.getName()).log(Level.SEVERE, null, ex);
             return false;
-        } catch (Exception e){
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             return false;
         }
         return true;
     }
-    public ArrayList<Department> queryAll(){
-        String sql = "select * from dept";
+
+    public ArrayList<Department> queryAll() {
+        String sql = "select * from dept order by name asc";
         ArrayList<Department> departmentList = null;
         try {
             departmentList = new ArrayList<>();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {                
+            while (rs.next()) {
                 departmentList.add(new Department(rs.getString("name")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DepartmentDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
         return departmentList;

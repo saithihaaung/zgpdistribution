@@ -16,16 +16,17 @@ import zgpdistribution.util.oops.Warehouse;
  * @author HWT
  */
 public class WarehouseDAO {
+
     private Connection conn;
 
     public WarehouseDAO() {
         try {
             conn = DataSourceConnection.initDB();
-        }catch(Exception exc) {
+        } catch (Exception exc) {
             System.err.println(exc.getMessage());
         }
     }
-    
+
     public boolean save(Warehouse data) {
         String sql = "insert into warehouseinfo (name, address, township, city, state, phone, whsvr) values (?,?,?,?,?,?,?)";
         try {
@@ -38,29 +39,29 @@ public class WarehouseDAO {
             pstat.setString(6, data.getPhone());
             pstat.setString(7, data.getWhsvr());
             pstat.executeUpdate();
-        }catch (Exception exc) {
+        } catch (Exception exc) {
             System.err.println(exc.getMessage());
             return false;
-        }        
+        }
         return true;
     }
-    
+
     public ArrayList<Warehouse> queryAllData() {
-        String sql = "select * from warehouseinfo";
+        String sql = "select * from warehouseinfo where order by name asc";
         ArrayList<Warehouse> whlist = null;
         try {
             whlist = new ArrayList<>();
             Statement stat = conn.createStatement();
             ResultSet rs = stat.executeQuery(sql);
-            while(rs.next()) {
-                whlist.add(new Warehouse(rs.getString("name"),rs.getString("address"),rs.getString("township"), 
-                        rs.getString("city"), rs.getString("state"),rs.getString("country"), rs.getString("phone"), 
+            while (rs.next()) {
+                whlist.add(new Warehouse(rs.getString("name"), rs.getString("address"), rs.getString("township"),
+                        rs.getString("city"), rs.getString("state"), rs.getString("country"), rs.getString("phone"),
                         rs.getString("whsvr")));
             }
             rs.close();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        return whlist; 
+        return whlist;
     }
 }

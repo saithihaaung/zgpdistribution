@@ -19,6 +19,7 @@ import zgpdistribution.util.oops.Supplier;
  * @author John
  */
 public class SupplierDAO {
+
     private Connection conn;
 
     public SupplierDAO() {
@@ -28,7 +29,8 @@ public class SupplierDAO {
             System.err.println(e.getMessage());
         }
     }
-    public boolean save(Supplier data){
+
+    public boolean save(Supplier data) {
         String sql = "insert into supplier (name) value (?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -38,28 +40,28 @@ public class SupplierDAO {
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDAO.class.getName()).log(Level.SEVERE, null, ex);
             return false;
-        } catch (Exception e){
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             return false;
         }
         return true;
     }
-    public ArrayList<Supplier> queryAll(){
-        String sql = "select * from supplier";
+
+    public ArrayList<Supplier> queryAll() {
+        String sql = "select * from supplier order by name asc";
         ArrayList<Supplier> supplierList = null;
         try {
             supplierList = new ArrayList<>();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {                
+            while (rs.next()) {
                 supplierList.add(new Supplier(rs.getString("name")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
         return supplierList;
     }
-    
 }

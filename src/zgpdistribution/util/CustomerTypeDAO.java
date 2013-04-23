@@ -12,17 +12,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import zgpdistribution.util.oops.Items;
+import zgpdistribution.util.oops.CustomerType;
 
 /**
  *
  * @author John
  */
-public class ItemsDAO {
+public class CustomerTypeDAO {
 
     private Connection conn;
 
-    public ItemsDAO() {
+    public CustomerTypeDAO() {
         try {
             conn = DataSourceConnection.initDB();
         } catch (Exception e) {
@@ -30,43 +30,41 @@ public class ItemsDAO {
         }
     }
 
-    public boolean save(Items data) {
-        String sql = "insert into items ( itemsName, itemsCode, unitsPerGrams, category, supplier, stdPrices) value (?,?,?,?,?,?)";
+    public boolean save(CustomerType data) {
+        String sql = "insert into customerlist (name, code) value (?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, data.getItemsName());
-            ps.setString(2, data.getItemsCode());
-            ps.setDouble(3, data.getUnitPerGrams());
-            ps.setString(4, data.getCategory());
-            ps.setString(5, data.getSupplier());
-            ps.setDouble(6, data.getStdPrices());
+            ps.setString(1, data.getName());
+            ps.setString(2, data.getCode());
             ps.executeUpdate();
+            ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ItemsDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerTypeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } catch (Exception e) {
             System.err.println(e.getMessage());
+            return false;
         }
         return true;
     }
 
-    public ArrayList<Items> queryAll() {
-        String sql = "select * from items";
-        ArrayList<Items> itemsList = null;
+    public ArrayList<CustomerType> queryAll() {
+        String sql = "select * from customerlist order by name asc";
+        ArrayList<CustomerType> custTypeList = null;
         try {
-            itemsList = new ArrayList<>();
+            custTypeList = new ArrayList<>();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                itemsList.add(new Items(rs.getString("itemsName"), rs.getString("itemsCode"), rs.getString("category"),
-                        rs.getString("supplier"), rs.getDouble("unitsPerGrams"), rs.getDouble("stdPrices")));
+                custTypeList.add(new CustomerType(rs.getString("name"), rs.getString("code")));
             }
             rs.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ItemsDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerTypeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-
-        return itemsList;
+        return custTypeList;
     }
 }

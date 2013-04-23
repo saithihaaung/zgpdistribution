@@ -44,7 +44,7 @@ public class IncommingShipmentDAO {
     }
 
     public ArrayList<IncommingShipment> queryAll() {
-        String sql = "select * from incommingshipment";
+        String sql = "select * from incommingshipment ordar by actualDate asc";
         ArrayList<IncommingShipment> incommingShipmentList = null;
         try {
             incommingShipmentList = new ArrayList<>();

@@ -12,17 +12,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import zgpdistribution.util.oops.Category;
+import zgpdistribution.util.oops.UoMList;
 
 /**
  *
  * @author John
  */
-public class CategoryDAO {
+public class UoMListDAO {
 
     private Connection conn;
 
-    public CategoryDAO() {
+    public UoMListDAO() {
         try {
             conn = DataSourceConnection.initDB();
         } catch (Exception e) {
@@ -30,38 +30,40 @@ public class CategoryDAO {
         }
     }
 
-    public boolean save(Category data) {
-        String sql = "insert into category (name) value (?)";
+    public boolean save(UoMList data) {
+        String sql = "insert into uomlist (uomLong, uomShort) value (?,?)";
         try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, data.getName());
-            ps.executeUpdate();
-            ps.close();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, data.getUomLong());
+            st.setString(2, data.getUomShort());
+            st.executeUpdate();
+            st.close();
         } catch (SQLException ex) {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UoMListDAO.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         } catch (Exception e) {
             System.err.println(e.getMessage());
+            return false;
         }
         return true;
     }
 
-    public ArrayList<Category> queryAll() {
-        String sql = "select * from category order by name asc";
-        ArrayList<Category> categoryList = null;
+    public ArrayList<UoMList> queryAll() {
+        ArrayList<UoMList> uomList = null;
+        String sql = "select * from uomlist order by uomLong asc";
         try {
-            categoryList = new ArrayList<>();
+            uomList = new ArrayList<>();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                categoryList.add(new Category(rs.getString("name")));
+                uomList.add(new UoMList(rs.getString("uomLong"), rs.getString("uomShort")));
             }
             rs.close();
         } catch (SQLException ex) {
-            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UoMListDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        return categoryList;
+        return uomList;
     }
 }

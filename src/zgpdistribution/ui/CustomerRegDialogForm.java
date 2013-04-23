@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import zgpdistribution.util.CityDAO;
 import zgpdistribution.util.CountryDAO;
-import zgpdistribution.util.CustTypeDAO;
+import zgpdistribution.util.ChannelListDAO;
 import zgpdistribution.util.CustomerDAO;
 import zgpdistribution.util.StateDAO;
 import zgpdistribution.util.TownshipDAO;
 import zgpdistribution.util.oops.City;
 import zgpdistribution.util.oops.Country;
-import zgpdistribution.util.oops.CustType;
+import zgpdistribution.util.oops.ChannelList;
 import zgpdistribution.util.oops.Customer;
 import zgpdistribution.util.oops.State;
 import zgpdistribution.util.oops.Township;
@@ -62,8 +62,8 @@ public class CustomerRegDialogForm extends javax.swing.JDialog {
             for (Country country : countryList) {
                 jComboBoxCustRegCountry.addItem(country.getName());
             }
-            ArrayList<CustType> custTList = new CustTypeDAO().queryAll();
-            for (CustType custType : custTList) {
+            ArrayList<ChannelList> custTList = new ChannelListDAO().queryAll();
+            for (ChannelList custType : custTList) {
                 jComboBoxCustRegCustType.addItem(custType.getName());
             }
         } catch (Exception e) {

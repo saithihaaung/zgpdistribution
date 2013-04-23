@@ -111,7 +111,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1244" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="1332" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -144,7 +144,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="1265" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1353" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -213,7 +213,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1244" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="1332" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -286,10 +286,10 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelCustRegCustType" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelCustRegChannel" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelCustRegCustomerName" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelCustRegOutletName" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelCustRegCity" min="-2" max="-2" attributes="0"/>
@@ -300,25 +300,27 @@
                                   <Component id="jLabelCustRegFax" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabeCustReglTownship" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelCustRegAddress" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelCustType" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="23" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextFieldCustRegOutletName" linkSize="5" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldCustRegCustomerName" linkSize="5" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" linkSize="5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxCustRegTownship" linkSize="5" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxCustRegCity" linkSize="5" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxCustRegState" linkSize="5" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxCustRegCountry" linkSize="5" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldCustRegPhone" linkSize="5" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldCustRegEmail" linkSize="5" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldCustRegFax" linkSize="5" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxCustRegCustType" linkSize="5" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jTextFieldCustRegOutletName" linkSize="5" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldCustRegCustomerName" linkSize="5" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane2" linkSize="5" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jComboBoxCustRegTownship" linkSize="5" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="jComboBoxCustRegCity" linkSize="5" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="jComboBoxCustRegState" linkSize="5" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="jComboBoxCustRegCountry" linkSize="5" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldCustRegPhone" linkSize="5" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldCustRegEmail" linkSize="5" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldCustRegFax" linkSize="5" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="jComboBoxCustRegChannel" linkSize="5" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="jComboBoxCustType" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButtonCustRegReset" pref="923" max="32767" attributes="0"/>
                                   <Component id="jButtonCustRegSave" max="32767" attributes="0"/>
+                                  <Component id="jButtonCustRegReset" pref="940" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -328,71 +330,73 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabelCustRegOutletName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldCustRegOutletName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabelCustRegCustomerName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldCustRegCustomerName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabelCustRegAddress" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jComboBoxCustRegTownship" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabeCustReglTownship" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabelCustRegCity" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBoxCustRegCity" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jComboBoxCustRegState" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelCustRegState" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jComboBoxCustRegCountry" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelCustRegCountry" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jTextFieldCustRegPhone" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelCustRegPhone" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jTextFieldCustRegEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelCustRegMail" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jTextFieldCustRegFax" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelCustRegFax" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabelCustRegCustType" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBoxCustRegCustType" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jButtonCustRegSave" min="-2" pref="265" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButtonCustRegReset" min="-2" pref="265" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="36" max="32767" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabelCustRegOutletName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldCustRegOutletName" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabelCustRegCustomerName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldCustRegCustomerName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabelCustRegAddress" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jComboBoxCustRegTownship" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabeCustReglTownship" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabelCustRegCity" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxCustRegCity" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jComboBoxCustRegState" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelCustRegState" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jComboBoxCustRegCountry" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelCustRegCountry" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jTextFieldCustRegPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelCustRegPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jTextFieldCustRegEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelCustRegMail" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jTextFieldCustRegFax" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelCustRegFax" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabelCustRegChannel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxCustRegChannel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jComboBoxCustType" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelCustType" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonCustRegSave" min="-2" pref="265" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jButtonCustRegReset" min="-2" pref="265" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="37" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -520,12 +524,24 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldCustRegOutletName">
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabelCustRegCustType">
+                    <Component class="javax.swing.JLabel" name="jLabelCustRegChannel">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Channel : "/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="jComboBoxCustRegChannel">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabelCustType">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Customer Type : "/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="jComboBoxCustRegCustType">
+                    <Component class="javax.swing.JComboBox" name="jComboBoxCustType">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="0"/>
@@ -630,7 +646,7 @@
                                       <Component id="jScrollPane4" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="jButtonSmgmtInvAdd" pref="420" max="32767" attributes="0"/>
+                                      <Component id="jButtonSmgmtInvAdd" pref="508" max="32767" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jButtonSmgmtInvSV" min="-2" pref="396" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -947,7 +963,7 @@
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="0" pref="119" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="207" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -1230,7 +1246,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1252" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="1340" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -1311,7 +1327,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jPanelWork" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jButtonEmpRegSave" pref="634" max="32767" attributes="0"/>
+                                      <Component id="jButtonEmpRegSave" pref="722" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="jButtonEmpRegReset" max="32767" attributes="0"/>
                               </Group>
@@ -1803,7 +1819,7 @@
                                           <Component id="jComboBoxWhRegCity" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                      <Component id="jButtonWhRegResetl" pref="930" max="32767" attributes="0"/>
+                                      <Component id="jButtonWhRegResetl" pref="1018" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1984,42 +2000,64 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelItemRegPrize" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelItemRegWeight" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelItemRegName" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelItemRegCode" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelItemRegUM" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelItemRegUP" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelItemRegUW" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelItemRegSUM" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelItemRegSUW" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelItemRegSUInclude" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelItemRegSUP" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelItemRegCategory" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelItemRegSupplier" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelItemRegName" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelItemRegCode" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jComboBoxItemRegSupplier" alignment="0" pref="187" max="32767" attributes="0"/>
-                                  <Component id="jComboBoxItemRegCategory" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldItemRegCode" alignment="0" pref="187" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldItemRegName" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jTextFieldItemRegPrize" min="-2" pref="80" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jTextFieldItemRegWeight" min="-2" pref="80" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jLabelGrams" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jTextFieldItemRegSUInclude" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <Component id="jTextFieldItemRegSUP" min="-2" pref="100" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="59" max="32767" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jComboBoxItemRegSUInclude" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxItemRegSUP" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jTextFieldItemRegSUW" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jComboBoxItemRegSUW" min="-2" pref="132" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jComboBoxItemRegCategory" linkSize="12" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="jComboBoxItemRegSUM" linkSize="12" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jTextFieldItemRegUP" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxItemRegUP" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jTextFieldItemRegUW" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxItemRegUW" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Component id="jTextFieldItemRegCode" linkSize="12" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jTextFieldItemRegName" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxItemRegUM" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jComboBoxItemRegSupplier" linkSize="12" pref="250" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="65" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jButtonItemRegReset" pref="888" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jButtonItemRegSave" max="32767" attributes="0"/>
+                                  <Component id="jButtonItemRegReset" pref="908" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -2027,45 +2065,82 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jButtonItemRegSave" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jLabelItemRegName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jTextFieldItemRegName" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldItemRegCode" linkSize="15" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jLabelItemRegCode" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jComboBoxItemRegUM" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelItemRegUM" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jTextFieldItemRegUW" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelItemRegUW" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxItemRegUW" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabelItemRegUP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jTextFieldItemRegUP" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxItemRegUP" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jComboBoxItemRegSUM" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelItemRegSUM" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jTextFieldItemRegSUW" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jComboBoxItemRegSUW" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelItemRegSUW" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jTextFieldItemRegSUInclude" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jComboBoxItemRegSUInclude" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelItemRegSUInclude" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jComboBoxItemRegSUP" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jTextFieldItemRegSUP" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelItemRegSUP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jComboBoxItemRegCategory" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelItemRegCategory" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jComboBoxItemRegSupplier" linkSize="15" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelItemRegSupplier" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jButtonItemRegReset" min="-2" pref="291" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelItemRegName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldItemRegName" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelItemRegCode" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldItemRegCode" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelItemRegWeight" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldItemRegWeight" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelGrams" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelItemRegCategory" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxItemRegCategory" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelItemRegSupplier" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxItemRegSupplier" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelItemRegPrize" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldItemRegPrize" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jButtonItemRegSave" min="-2" pref="260" max="-2" attributes="0"/>
-                              <EmptySpace pref="69" max="32767" attributes="0"/>
-                              <Component id="jButtonItemRegReset" min="-2" pref="260" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2081,7 +2156,7 @@
                         <Property name="text" type="java.lang.String" value="Code :"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabelItemRegWeight">
+                    <Component class="javax.swing.JLabel" name="jLabelItemRegUW">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Unit Weight : "/>
                       </Properties>
@@ -2096,17 +2171,12 @@
                         <Property name="text" type="java.lang.String" value="Supplier : "/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabelItemRegPrize">
+                    <Component class="javax.swing.JLabel" name="jLabelItemRegUP">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Unit Prize : "/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextFieldItemRegPrize">
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel17">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Kyats"/>
-                      </Properties>
+                    <Component class="javax.swing.JTextField" name="jTextFieldItemRegUP">
                     </Component>
                     <Component class="javax.swing.JComboBox" name="jComboBoxItemRegSupplier">
                       <Properties>
@@ -2122,12 +2192,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextFieldItemRegWeight">
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabelGrams">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Grams"/>
-                      </Properties>
+                    <Component class="javax.swing.JTextField" name="jTextFieldItemRegUW">
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldItemRegCode">
                     </Component>
@@ -2148,6 +2213,86 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonItemRegResetActionPerformed"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabelItemRegUM">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Unit Measurement : "/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabelItemRegSUM">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Sub Unit Measurement : "/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="jComboBoxItemRegUM">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="jComboBoxItemRegUW">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabelItemRegSUW">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Sub Unit Weight : "/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabelItemRegSUInclude">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Sub Unit Include : "/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="jComboBoxItemRegSUM">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jTextFieldItemRegSUW">
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="jComboBoxItemRegSUW">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jTextFieldItemRegSUInclude">
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="jComboBoxItemRegSUInclude">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="jComboBoxItemRegUP">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabelItemRegSUP">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Sub Unit Prize : "/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jTextFieldItemRegSUP">
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="jComboBoxItemRegSUP">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -2174,7 +2319,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="1265" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1353" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -2203,7 +2348,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTabbedPaneReportBase" alignment="0" pref="1265" max="32767" attributes="0"/>
+                  <Component id="jTabbedPaneReportBase" alignment="0" pref="1353" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -2285,7 +2430,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1252" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="1340" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -2316,7 +2461,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel2" pref="1232" max="32767" attributes="0"/>
+                              <Component id="jLabel2" pref="1320" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>

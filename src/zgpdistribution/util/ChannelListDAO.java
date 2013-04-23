@@ -12,17 +12,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import zgpdistribution.util.oops.Team;
+import zgpdistribution.util.oops.ChannelList;
 
 /**
  *
  * @author John
  */
-public class TeamDAO {
+public class ChannelListDAO {
 
     private Connection conn;
 
-    public TeamDAO() {
+    public ChannelListDAO() {
         try {
             conn = DataSourceConnection.initDB();
         } catch (Exception e) {
@@ -30,15 +30,16 @@ public class TeamDAO {
         }
     }
 
-    public boolean save(Team data) {
-        String sql = "insert into team (name) value (?)";
+    public boolean save(ChannelList data) {
+        String sql = "insert into channellist(name, code)value(?,?)";
         try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, data.getName());
+            PreparedStatement ps = conn.prepareCall(sql);
+            ps.setString(1, data.getName().trim());
+            ps.setString(2, data.getCode().trim());
             ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(TeamDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ChannelListDAO.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -47,22 +48,22 @@ public class TeamDAO {
         return true;
     }
 
-    public ArrayList<Team> queryAll() {
-        String sql = "select * from team order by name asc";
-        ArrayList<Team> teamList = null;
+    public ArrayList<ChannelList> queryAll() {
+        String sql = "select * from channellist order by name asc";
+        ArrayList<ChannelList> custTypeList = null;
         try {
-            teamList = new ArrayList<>();
+            custTypeList = new ArrayList<>();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                teamList.add(new Team(rs.getString("name")));
+                custTypeList.add(new ChannelList(rs.getString("name"), rs.getString("code")));
             }
             rs.close();
         } catch (SQLException ex) {
-            Logger.getLogger(TeamDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ChannelListDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        return teamList;
+        return custTypeList;
     }
 }

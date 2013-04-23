@@ -12,17 +12,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import zgpdistribution.util.oops.CustType;
+import zgpdistribution.util.oops.TeamList;
 
 /**
  *
  * @author John
  */
-public class CustTypeDAO {
+public class TeamListDAO {
 
     private Connection conn;
 
-    public CustTypeDAO() {
+    public TeamListDAO() {
         try {
             conn = DataSourceConnection.initDB();
         } catch (Exception e) {
@@ -30,15 +30,16 @@ public class CustTypeDAO {
         }
     }
 
-    public boolean save(CustType data) {
-        String sql = "insert into custtype(name)value(?)";
+    public boolean save(TeamList data) {
+        String sql = "insert into teamlist (name, code) value (?,?)";
         try {
-            PreparedStatement ps = conn.prepareCall(sql);
-            ps.setString(1, data.getName().trim());
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, data.getName());
+            ps.setString(2, data.getCode());
             ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(CustTypeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeamListDAO.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -47,22 +48,22 @@ public class CustTypeDAO {
         return true;
     }
 
-    public ArrayList<CustType> queryAll() {
-        String sql = "select * from custtype order by name asc";
-        ArrayList<CustType> custTypeList = null;
+    public ArrayList<TeamList> queryAll() {
+        String sql = "select * from teamlist order by name asc";
+        ArrayList<TeamList> teamList = null;
         try {
-            custTypeList = new ArrayList<>();
+            teamList = new ArrayList<>();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                custTypeList.add(new CustType(rs.getString("name")));
+                teamList.add(new TeamList(rs.getString("name"), rs.getString("code")));
             }
             rs.close();
         } catch (SQLException ex) {
-            Logger.getLogger(CustTypeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeamListDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        return custTypeList;
+        return teamList;
     }
 }

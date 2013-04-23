@@ -13,30 +13,32 @@ import javax.swing.JOptionPane;
 import zgpdistribution.util.CategoryDAO;
 import zgpdistribution.util.CityDAO;
 import zgpdistribution.util.CountryDAO;
-import zgpdistribution.util.CustTypeDAO;
+import zgpdistribution.util.ChannelListDAO;
 import zgpdistribution.util.CustomerDAO;
 import zgpdistribution.util.DepartmentDAO;
 import zgpdistribution.util.EmployeeDAO;
-import zgpdistribution.util.ItemsDAO;
+import zgpdistribution.util.ItemListDAO;
 import zgpdistribution.util.PositionDAO;
 import zgpdistribution.util.StateDAO;
 import zgpdistribution.util.SupplierDAO;
-import zgpdistribution.util.TeamDAO;
+import zgpdistribution.util.TeamListDAO;
 import zgpdistribution.util.TownshipDAO;
+import zgpdistribution.util.UoMListDAO;
 import zgpdistribution.util.WarehouseDAO;
 import zgpdistribution.util.oops.Category;
 import zgpdistribution.util.oops.City;
 import zgpdistribution.util.oops.Country;
-import zgpdistribution.util.oops.CustType;
+import zgpdistribution.util.oops.ChannelList;
 import zgpdistribution.util.oops.Customer;
 import zgpdistribution.util.oops.Department;
 import zgpdistribution.util.oops.Employee;
-import zgpdistribution.util.oops.Items;
+import zgpdistribution.util.oops.ItemList;
 import zgpdistribution.util.oops.Position;
 import zgpdistribution.util.oops.State;
 import zgpdistribution.util.oops.Supplier;
-import zgpdistribution.util.oops.Team;
+import zgpdistribution.util.oops.TeamList;
 import zgpdistribution.util.oops.Township;
+import zgpdistribution.util.oops.UoMList;
 import zgpdistribution.util.oops.Warehouse;
 
 /**
@@ -47,7 +49,7 @@ public class Base extends javax.swing.JFrame {
 
     private Double smgmtInvTPrizeShow;
     private Map<String, City> mCity = null;
-    private Map<String, Items> mItems = null;
+    private Map<String, ItemList> mItems = null;
 
     /**
      * Creates new form Base
@@ -65,9 +67,9 @@ public class Base extends javax.swing.JFrame {
             mCity.put(city.getCode(), city);
             jComboBoxSmgmtInvIncLo.addItem(city.getCode());
         }
-        for (Items items : new ItemsDAO().queryAll()) {
-            mItems.put(items.getItemsCode(), items);
-            jComboBoxSmgmtInvIncSCode.addItem(items.getItemsCode());
+        for (ItemList items : new ItemListDAO().queryAll()) {
+            mItems.put(items.getCode(), items);
+            jComboBoxSmgmtInvIncSCode.addItem(items.getCode());
         }
     }
 
@@ -87,15 +89,13 @@ public class Base extends javax.swing.JFrame {
         jComboBoxCustRegCity.addItem("-- Select One --");
         jComboBoxCustRegState.addItem("-- Select One --");
         jComboBoxCustRegCountry.addItem("-- Select One --");
-        jComboBoxCustRegCustType.addItem("-- Select One --");
+        jComboBoxCustRegChannel.addItem("-- Select One --");
 
         jComboBoxWhRegTownship.addItem("-- Select One --");
         jComboBoxWhRegTownship.setEnabled(false);
         jComboBoxWhRegCity.addItem("-- Select One --");
         jComboBoxWhRegState.addItem("-- Select One --");
         jComboBoxWhRegSupervisor.addItem("-- Select One --");
-        jComboBoxItemRegCategory.addItem("-- Select One --");
-        jComboBoxItemRegSupplier.addItem("-- Select One --");
 
         jComboBoxSmgmtInvIncLo.addItem("-- Select One --");
         jComboBoxSmgmtInvIncSCode.addItem("-- Select One --");
@@ -107,14 +107,35 @@ public class Base extends javax.swing.JFrame {
         jLabelSmgmtInvPrizeShow.setText("0.00 Kyats");
         jLabelSmgmtInvTPrizeShow.setText("0.00 Kyats");
 
+        jComboBoxItemRegUM.addItem("-- Select One --");
+        jComboBoxItemRegUW.addItem("-- Select One --");
+        jComboBoxItemRegUP.addItem("-- Select One --");
+        jComboBoxItemRegSUM.addItem("-- Select One --");
+        jComboBoxItemRegSUW.addItem("-- Select One --");
+        jComboBoxItemRegSUInclude.addItem("-- Select One --");
+        jComboBoxItemRegSUP.addItem("-- Select One --");
+        jComboBoxItemRegCategory.addItem("-- Select One --");
+        jComboBoxItemRegSupplier.addItem("-- Select One --");
 
         try {
-            ArrayList<Items> ItemList = new ItemsDAO().queryAll();
-            for (Items items : ItemList) {
-                jComboBoxSmgmtInvIncSCode.addItem(items.getItemsCode());
+            ArrayList<ItemList> ItemList = new ItemListDAO().queryAll();
+            for (ItemList items : ItemList) {
+                jComboBoxSmgmtInvIncSCode.addItem(items.getCode());
             }
-            ArrayList<Team> teamList = new TeamDAO().queryAll();
-            for (Team team : teamList) {
+
+            ArrayList<UoMList> uomList = new UoMListDAO().queryAll();
+            for (UoMList uoMList : uomList) {
+                jComboBoxItemRegUM.addItem(uoMList.getUomLong());
+                jComboBoxItemRegUW.addItem(uoMList.getUomShort());
+                jComboBoxItemRegUP.addItem(uoMList.getUomShort());
+                jComboBoxItemRegSUM.addItem(uoMList.getUomShort());
+                jComboBoxItemRegSUW.addItem(uoMList.getUomShort());
+                jComboBoxItemRegSUInclude.addItem(uoMList.getUomShort());
+                jComboBoxItemRegSUP.addItem(uoMList.getUomShort());
+            }
+
+            ArrayList<TeamList> teamList = new TeamListDAO().queryAll();
+            for (TeamList team : teamList) {
                 jComboBoxEmpRegWTeam.addItem(team.getName());
                 jComboBoxSmgmtInvSaleby.addItem(team.getName());
             }
@@ -166,9 +187,9 @@ public class Base extends javax.swing.JFrame {
             for (Supplier supplier : supplierList) {
                 jComboBoxItemRegSupplier.addItem(supplier.getName());
             }
-            ArrayList<CustType> custTList = new CustTypeDAO().queryAll();
-            for (CustType custType : custTList) {
-                jComboBoxCustRegCustType.addItem(custType.getName());
+            ArrayList<ChannelList> custTList = new ChannelListDAO().queryAll();
+            for (ChannelList custType : custTList) {
+                jComboBoxCustRegChannel.addItem(custType.getName());
                 jComboBoxSmgmtInvCustType.addItem(custType.getName());
             }
         } catch (Exception e) {
@@ -195,7 +216,6 @@ public class Base extends javax.swing.JFrame {
 
     private boolean saveEmpReg() {
         Employee emp = new Employee();
-        String team;
         emp.setName(jTextFieldEmpRegName.getText().toUpperCase().trim());
         emp.setNrc(jTextFieldEmpRegNRCNo.getText().trim());
         emp.setAddress(jTextAreaEmpRegAddress.getText().trim());
@@ -224,7 +244,7 @@ public class Base extends javax.swing.JFrame {
         jTextFieldCustRegPhone.setText("");
         jTextFieldCustRegEmail.setText("");
         jTextFieldCustRegFax.setText("");
-        jComboBoxCustRegCustType.setSelectedIndex(0);
+        jComboBoxCustRegChannel.setSelectedIndex(0);
     }
 
     private boolean saveCustReg() {
@@ -239,7 +259,7 @@ public class Base extends javax.swing.JFrame {
         cust.setPhone(jTextFieldCustRegPhone.getText().trim());
         cust.setEmail(jTextFieldCustRegEmail.getText().trim());
         cust.setFax(jTextFieldCustRegFax.getText().trim());
-        cust.setCustomerType(jComboBoxCustRegCustType.getSelectedItem().toString());
+        cust.setCustomerType(jComboBoxCustRegChannel.getSelectedItem().toString());
         return new CustomerDAO().save(cust);
     }
 
@@ -268,21 +288,33 @@ public class Base extends javax.swing.JFrame {
     private void resetItemRegPannel() {
         jTextFieldItemRegName.setText("");
         jTextFieldItemRegCode.setText("");
-        jTextFieldItemRegWeight.setText("");
+        jComboBoxItemRegUM.setSelectedIndex(0);
+        jTextFieldItemRegUW.setText("");
+        jComboBoxItemRegUW.setSelectedIndex(0);
+        jTextFieldItemRegUW.setText("");
+        jComboBoxItemRegUW.setSelectedIndex(0);
+        jTextFieldItemRegUP.setText("");
+        jComboBoxItemRegUP.setSelectedIndex(0);
+        jComboBoxItemRegSUM.setSelectedIndex(0);
+        jTextFieldItemRegSUW.setText("");
+        jComboBoxItemRegSUW.setSelectedIndex(0);
+        jTextFieldItemRegSUInclude.setText("");
+        jComboBoxItemRegSUInclude.setSelectedIndex(0);
+        jTextFieldItemRegSUP.setText("");
+        jComboBoxItemRegSUP.setSelectedIndex(0);
         jComboBoxItemRegCategory.setSelectedIndex(0);
         jComboBoxItemRegSupplier.setSelectedIndex(0);
-        jTextFieldItemRegPrize.setText("");
     }
 
     private boolean saveItemReg() {
-        Items item = new Items();
-        item.setItemsName(jTextFieldItemRegName.getText().trim());
-        item.setItemsCode(jTextFieldItemRegCode.getText().trim());
-        item.setUnitPerGrams(Double.parseDouble(jTextFieldItemRegWeight.getText().trim()));
+        ItemList item = new ItemList();
+        item.setName(jTextFieldItemRegName.getText().trim());
+        item.setCode(jTextFieldItemRegCode.getText().trim());
+        item.setNetUom(jComboBoxItemRegUM.getSelectedItem().toString());
         item.setCategory(jComboBoxItemRegCategory.getSelectedItem().toString());
         item.setSupplier(jComboBoxItemRegSupplier.getSelectedItem().toString());
-        item.setStdPrices(Double.parseDouble(jTextFieldItemRegPrize.getText().trim()));
-        return new ItemsDAO().save(item);
+        //item.setStdPrices(Double.parseDouble(jTextFieldItemRegPrize.getText().trim()));
+        return new ItemListDAO().save(item);
     }
 
     /**
@@ -330,8 +362,10 @@ public class Base extends javax.swing.JFrame {
         jTextAreaCustRegAddress = new javax.swing.JTextArea();
         jTextFieldCustRegCustomerName = new javax.swing.JTextField();
         jTextFieldCustRegOutletName = new javax.swing.JTextField();
-        jLabelCustRegCustType = new javax.swing.JLabel();
-        jComboBoxCustRegCustType = new javax.swing.JComboBox();
+        jLabelCustRegChannel = new javax.swing.JLabel();
+        jComboBoxCustRegChannel = new javax.swing.JComboBox();
+        jLabelCustType = new javax.swing.JLabel();
+        jComboBoxCustType = new javax.swing.JComboBox();
         jPanelSMGMT = new javax.swing.JPanel();
         jTabbedPaneSMGMTBase = new javax.swing.JTabbedPane();
         jPanelInvoicing = new javax.swing.JPanel();
@@ -443,20 +477,33 @@ public class Base extends javax.swing.JFrame {
         jPanelItemReg = new javax.swing.JPanel();
         jLabelItemRegName = new javax.swing.JLabel();
         jLabelItemRegCode = new javax.swing.JLabel();
-        jLabelItemRegWeight = new javax.swing.JLabel();
+        jLabelItemRegUW = new javax.swing.JLabel();
         jLabelItemRegCategory = new javax.swing.JLabel();
         jLabelItemRegSupplier = new javax.swing.JLabel();
-        jLabelItemRegPrize = new javax.swing.JLabel();
-        jTextFieldItemRegPrize = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
+        jLabelItemRegUP = new javax.swing.JLabel();
+        jTextFieldItemRegUP = new javax.swing.JTextField();
         jComboBoxItemRegSupplier = new javax.swing.JComboBox();
         jComboBoxItemRegCategory = new javax.swing.JComboBox();
-        jTextFieldItemRegWeight = new javax.swing.JTextField();
-        jLabelGrams = new javax.swing.JLabel();
+        jTextFieldItemRegUW = new javax.swing.JTextField();
         jTextFieldItemRegCode = new javax.swing.JTextField();
         jTextFieldItemRegName = new javax.swing.JTextField();
         jButtonItemRegSave = new javax.swing.JButton();
         jButtonItemRegReset = new javax.swing.JButton();
+        jLabelItemRegUM = new javax.swing.JLabel();
+        jLabelItemRegSUM = new javax.swing.JLabel();
+        jComboBoxItemRegUM = new javax.swing.JComboBox();
+        jComboBoxItemRegUW = new javax.swing.JComboBox();
+        jLabelItemRegSUW = new javax.swing.JLabel();
+        jLabelItemRegSUInclude = new javax.swing.JLabel();
+        jComboBoxItemRegSUM = new javax.swing.JComboBox();
+        jTextFieldItemRegSUW = new javax.swing.JTextField();
+        jComboBoxItemRegSUW = new javax.swing.JComboBox();
+        jTextFieldItemRegSUInclude = new javax.swing.JTextField();
+        jComboBoxItemRegSUInclude = new javax.swing.JComboBox();
+        jComboBoxItemRegUP = new javax.swing.JComboBox();
+        jLabelItemRegSUP = new javax.swing.JLabel();
+        jTextFieldItemRegSUP = new javax.swing.JTextField();
+        jComboBoxItemRegSUP = new javax.swing.JComboBox();
         jPanelFleetMGMT = new javax.swing.JPanel();
         jPanelReport = new javax.swing.JPanel();
         jTabbedPaneReportBase = new javax.swing.JTabbedPane();
@@ -482,7 +529,7 @@ public class Base extends javax.swing.JFrame {
         jPanelCompanyReg.setLayout(jPanelCompanyRegLayout);
         jPanelCompanyRegLayout.setHorizontalGroup(
             jPanelCompanyRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1244, Short.MAX_VALUE)
+            .addGap(0, 1332, Short.MAX_VALUE)
         );
         jPanelCompanyRegLayout.setVerticalGroup(
             jPanelCompanyRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -510,7 +557,7 @@ public class Base extends javax.swing.JFrame {
         jPanelAccount.setLayout(jPanelAccountLayout);
         jPanelAccountLayout.setHorizontalGroup(
             jPanelAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1265, Short.MAX_VALUE)
+            .addGap(0, 1353, Short.MAX_VALUE)
         );
         jPanelAccountLayout.setVerticalGroup(
             jPanelAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -529,7 +576,7 @@ public class Base extends javax.swing.JFrame {
         jPanelSupplierREG.setLayout(jPanelSupplierREGLayout);
         jPanelSupplierREGLayout.setHorizontalGroup(
             jPanelSupplierREGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1244, Short.MAX_VALUE)
+            .addGap(0, 1332, Short.MAX_VALUE)
         );
         jPanelSupplierREGLayout.setVerticalGroup(
             jPanelSupplierREGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -601,7 +648,9 @@ public class Base extends javax.swing.JFrame {
         jTextAreaCustRegAddress.setRows(5);
         jScrollPane2.setViewportView(jTextAreaCustRegAddress);
 
-        jLabelCustRegCustType.setText("Customer Type : ");
+        jLabelCustRegChannel.setText("Channel : ");
+
+        jLabelCustType.setText("Customer Type : ");
 
         javax.swing.GroupLayout jPanelCustRegLayout = new javax.swing.GroupLayout(jPanelCustReg);
         jPanelCustReg.setLayout(jPanelCustRegLayout);
@@ -610,7 +659,7 @@ public class Base extends javax.swing.JFrame {
             .addGroup(jPanelCustRegLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelCustRegCustType)
+                    .addComponent(jLabelCustRegChannel)
                     .addComponent(jLabelCustRegCustomerName)
                     .addComponent(jLabelCustRegOutletName)
                     .addComponent(jLabelCustRegCity)
@@ -620,84 +669,89 @@ public class Base extends javax.swing.JFrame {
                     .addComponent(jLabelCustRegMail)
                     .addComponent(jLabelCustRegFax)
                     .addComponent(jLabeCustReglTownship)
-                    .addComponent(jLabelCustRegAddress))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                    .addComponent(jLabelCustRegAddress)
+                    .addComponent(jLabelCustType))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldCustRegOutletName, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(jTextFieldCustRegCustomerName, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jComboBoxCustRegTownship, 0, 250, Short.MAX_VALUE)
+                    .addComponent(jComboBoxCustRegCity, 0, 250, Short.MAX_VALUE)
+                    .addComponent(jComboBoxCustRegState, 0, 250, Short.MAX_VALUE)
+                    .addComponent(jComboBoxCustRegCountry, 0, 250, Short.MAX_VALUE)
+                    .addComponent(jTextFieldCustRegPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(jTextFieldCustRegEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(jTextFieldCustRegFax, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(jComboBoxCustRegChannel, 0, 250, Short.MAX_VALUE)
+                    .addComponent(jComboBoxCustType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldCustRegOutletName, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCustRegCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxCustRegTownship, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxCustRegCity, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxCustRegState, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxCustRegCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCustRegPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCustRegEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCustRegFax, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxCustRegCustType, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonCustRegReset, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE)
-                    .addComponent(jButtonCustRegSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonCustRegSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonCustRegReset, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jPanelCustRegLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jComboBoxCustRegCity, jComboBoxCustRegCountry, jComboBoxCustRegCustType, jComboBoxCustRegState, jComboBoxCustRegTownship, jScrollPane2, jTextFieldCustRegCustomerName, jTextFieldCustRegEmail, jTextFieldCustRegFax, jTextFieldCustRegOutletName, jTextFieldCustRegPhone});
+        jPanelCustRegLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jComboBoxCustRegChannel, jComboBoxCustRegCity, jComboBoxCustRegCountry, jComboBoxCustRegState, jComboBoxCustRegTownship, jScrollPane2, jTextFieldCustRegCustomerName, jTextFieldCustRegEmail, jTextFieldCustRegFax, jTextFieldCustRegOutletName, jTextFieldCustRegPhone});
 
         jPanelCustRegLayout.setVerticalGroup(
             jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCustRegLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
+                .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCustRegOutletName)
+                    .addComponent(jTextFieldCustRegOutletName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCustRegCustomerName)
+                    .addComponent(jTextFieldCustRegCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelCustRegLayout.createSequentialGroup()
-                        .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCustRegOutletName)
-                            .addComponent(jTextFieldCustRegOutletName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCustRegCustomerName)
-                            .addComponent(jTextFieldCustRegCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCustRegAddress)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxCustRegTownship, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabeCustReglTownship))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCustRegCity)
-                            .addComponent(jComboBoxCustRegCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxCustRegState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCustRegState))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxCustRegCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCustRegCountry))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldCustRegPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCustRegPhone))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldCustRegEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCustRegMail))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldCustRegFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCustRegFax))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCustRegCustType)
-                            .addComponent(jComboBoxCustRegCustType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanelCustRegLayout.createSequentialGroup()
-                        .addComponent(jButtonCustRegSave, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonCustRegReset, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 36, Short.MAX_VALUE))))
+                    .addComponent(jLabelCustRegAddress)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxCustRegTownship, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabeCustReglTownship))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCustRegCity)
+                    .addComponent(jComboBoxCustRegCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxCustRegState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCustRegState))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxCustRegCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCustRegCountry))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldCustRegPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCustRegPhone))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldCustRegEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCustRegMail))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldCustRegFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCustRegFax))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCustRegChannel)
+                    .addComponent(jComboBoxCustRegChannel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelCustRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxCustType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCustType))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanelCustRegLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonCustRegSave, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonCustRegReset, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 37, Short.MAX_VALUE))
         );
 
         jTabbedPaneCRMBase.addTab("CUSTOMER REGISTER", jPanelCustReg);
@@ -833,7 +887,7 @@ public class Base extends javax.swing.JFrame {
                         .addGap(133, 133, 133)
                         .addComponent(jScrollPane4))
                     .addGroup(jPanelInvoicingLayout.createSequentialGroup()
-                        .addComponent(jButtonSmgmtInvAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                        .addComponent(jButtonSmgmtInvAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonSmgmtInvSV, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -997,7 +1051,7 @@ public class Base extends javax.swing.JFrame {
                                     .addComponent(jLabelSmgmtInvIncSCodeLong1)
                                     .addComponent(jLabelSmgmtInvIncQtyPkg1)
                                     .addComponent(jLabelSmgmtPosTPrizeShow))))
-                        .addGap(0, 119, Short.MAX_VALUE)))
+                        .addGap(0, 207, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelPosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelPosLayout.createSequentialGroup()
@@ -1072,7 +1126,7 @@ public class Base extends javax.swing.JFrame {
         jPanelDo.setLayout(jPanelDoLayout);
         jPanelDoLayout.setHorizontalGroup(
             jPanelDoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1252, Short.MAX_VALUE)
+            .addGap(0, 1340, Short.MAX_VALUE)
         );
         jPanelDoLayout.setVerticalGroup(
             jPanelDoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1310,7 +1364,7 @@ public class Base extends javax.swing.JFrame {
                     .addGroup(jPanelEmpRegLayout.createSequentialGroup()
                         .addComponent(jPanelWork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonEmpRegSave, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE))
+                        .addComponent(jButtonEmpRegSave, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE))
                     .addComponent(jButtonEmpRegReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1417,7 +1471,7 @@ public class Base extends javax.swing.JFrame {
                             .addComponent(jComboBoxWhRegTownship, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxWhRegCity, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonWhRegResetl, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)))
+                        .addComponent(jButtonWhRegResetl, javax.swing.GroupLayout.DEFAULT_SIZE, 1018, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelWHREGLayout.setVerticalGroup(
@@ -1467,17 +1521,13 @@ public class Base extends javax.swing.JFrame {
 
         jLabelItemRegCode.setText("Code :");
 
-        jLabelItemRegWeight.setText("Unit Weight : ");
+        jLabelItemRegUW.setText("Unit Weight : ");
 
         jLabelItemRegCategory.setText("Category : ");
 
         jLabelItemRegSupplier.setText("Supplier : ");
 
-        jLabelItemRegPrize.setText("Unit Prize : ");
-
-        jLabel17.setText("Kyats");
-
-        jLabelGrams.setText("Grams");
+        jLabelItemRegUP.setText("Unit Prize : ");
 
         jButtonItemRegSave.setText("Save");
         jButtonItemRegSave.addActionListener(new java.awt.event.ActionListener() {
@@ -1493,6 +1543,16 @@ public class Base extends javax.swing.JFrame {
             }
         });
 
+        jLabelItemRegUM.setText("Unit Measurement : ");
+
+        jLabelItemRegSUM.setText("Sub Unit Measurement : ");
+
+        jLabelItemRegSUW.setText("Sub Unit Weight : ");
+
+        jLabelItemRegSUInclude.setText("Sub Unit Include : ");
+
+        jLabelItemRegSUP.setText("Sub Unit Prize : ");
+
         javax.swing.GroupLayout jPanelItemRegLayout = new javax.swing.GroupLayout(jPanelItemReg);
         jPanelItemReg.setLayout(jPanelItemRegLayout);
         jPanelItemRegLayout.setHorizontalGroup(
@@ -1500,70 +1560,120 @@ public class Base extends javax.swing.JFrame {
             .addGroup(jPanelItemRegLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelItemRegPrize)
-                    .addComponent(jLabelItemRegWeight)
-                    .addComponent(jLabelItemRegCategory)
-                    .addComponent(jLabelItemRegSupplier)
                     .addComponent(jLabelItemRegName)
-                    .addComponent(jLabelItemRegCode))
+                    .addComponent(jLabelItemRegCode)
+                    .addComponent(jLabelItemRegUM)
+                    .addComponent(jLabelItemRegUP)
+                    .addComponent(jLabelItemRegUW)
+                    .addComponent(jLabelItemRegSUM)
+                    .addComponent(jLabelItemRegSUW)
+                    .addComponent(jLabelItemRegSUInclude)
+                    .addComponent(jLabelItemRegSUP)
+                    .addComponent(jLabelItemRegCategory)
+                    .addComponent(jLabelItemRegSupplier))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxItemRegSupplier, 0, 187, Short.MAX_VALUE)
-                    .addComponent(jComboBoxItemRegCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldItemRegCode, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                    .addComponent(jTextFieldItemRegName)
                     .addGroup(jPanelItemRegLayout.createSequentialGroup()
+                        .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldItemRegSUInclude, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldItemRegSUP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelItemRegLayout.createSequentialGroup()
-                                .addComponent(jTextFieldItemRegPrize, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel17))
-                            .addGroup(jPanelItemRegLayout.createSequentialGroup()
-                                .addComponent(jTextFieldItemRegWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelGrams)))
-                        .addGap(0, 59, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonItemRegReset, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
-                    .addComponent(jButtonItemRegSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jComboBoxItemRegSUInclude, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxItemRegSUP, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelItemRegLayout.createSequentialGroup()
+                        .addComponent(jTextFieldItemRegSUW, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxItemRegSUW, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxItemRegCategory, 0, 250, Short.MAX_VALUE)
+                    .addComponent(jComboBoxItemRegSUM, 0, 250, Short.MAX_VALUE)
+                    .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelItemRegLayout.createSequentialGroup()
+                            .addComponent(jTextFieldItemRegUP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jComboBoxItemRegUP, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelItemRegLayout.createSequentialGroup()
+                            .addComponent(jTextFieldItemRegUW, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jComboBoxItemRegUW, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldItemRegCode)
+                            .addComponent(jTextFieldItemRegName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxItemRegUM, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jComboBoxItemRegSupplier, 0, 250, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonItemRegSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonItemRegReset, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        jPanelItemRegLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jComboBoxItemRegCategory, jComboBoxItemRegSUM, jComboBoxItemRegSupplier, jTextFieldItemRegCode});
+
         jPanelItemRegLayout.setVerticalGroup(
             jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelItemRegLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelItemRegName)
-                    .addComponent(jTextFieldItemRegName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelItemRegLayout.createSequentialGroup()
+                .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelItemRegLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonItemRegSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelItemRegLayout.createSequentialGroup()
+                        .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelItemRegLayout.createSequentialGroup()
+                                .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelItemRegName)
+                                    .addComponent(jTextFieldItemRegName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldItemRegCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelItemRegCode))
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxItemRegUM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelItemRegUM))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldItemRegUW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelItemRegUW)
+                            .addComponent(jComboBoxItemRegUW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelItemRegUP)
+                            .addComponent(jTextFieldItemRegUP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxItemRegUP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxItemRegSUM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelItemRegSUM))
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldItemRegSUW)
+                            .addComponent(jComboBoxItemRegSUW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelItemRegSUW))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldItemRegSUInclude)
+                            .addComponent(jComboBoxItemRegSUInclude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelItemRegSUInclude))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelItemRegCode)
-                    .addComponent(jTextFieldItemRegCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelItemRegWeight)
-                    .addComponent(jTextFieldItemRegWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelGrams))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelItemRegCategory)
-                    .addComponent(jComboBoxItemRegCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelItemRegSupplier)
-                    .addComponent(jComboBoxItemRegSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelItemRegPrize)
-                    .addComponent(jTextFieldItemRegPrize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanelItemRegLayout.createSequentialGroup()
-                .addComponent(jButtonItemRegSave, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addComponent(jButtonItemRegReset, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelItemRegLayout.createSequentialGroup()
+                        .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxItemRegSUP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldItemRegSUP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelItemRegSUP))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxItemRegCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelItemRegCategory))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelItemRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jComboBoxItemRegSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelItemRegSupplier)))
+                    .addComponent(jButtonItemRegReset, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
+
+        jPanelItemRegLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jComboBoxItemRegCategory, jComboBoxItemRegSUInclude, jComboBoxItemRegSUP, jComboBoxItemRegSUW, jComboBoxItemRegSupplier, jComboBoxItemRegUM, jComboBoxItemRegUP, jComboBoxItemRegUW, jTextFieldItemRegCode, jTextFieldItemRegName, jTextFieldItemRegSUP, jTextFieldItemRegUP, jTextFieldItemRegUW});
 
         jTabbedPaneWHMGMTBase.addTab("ITEM REG", jPanelItemReg);
 
@@ -1586,7 +1696,7 @@ public class Base extends javax.swing.JFrame {
         jPanelFleetMGMT.setLayout(jPanelFleetMGMTLayout);
         jPanelFleetMGMTLayout.setHorizontalGroup(
             jPanelFleetMGMTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1265, Short.MAX_VALUE)
+            .addGap(0, 1353, Short.MAX_VALUE)
         );
         jPanelFleetMGMTLayout.setVerticalGroup(
             jPanelFleetMGMTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1603,7 +1713,7 @@ public class Base extends javax.swing.JFrame {
         jPanelReport.setLayout(jPanelReportLayout);
         jPanelReportLayout.setHorizontalGroup(
             jPanelReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneReportBase, javax.swing.GroupLayout.DEFAULT_SIZE, 1265, Short.MAX_VALUE)
+            .addComponent(jTabbedPaneReportBase, javax.swing.GroupLayout.DEFAULT_SIZE, 1353, Short.MAX_VALUE)
         );
         jPanelReportLayout.setVerticalGroup(
             jPanelReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1622,7 +1732,7 @@ public class Base extends javax.swing.JFrame {
         jPanelContents.setLayout(jPanelContentsLayout);
         jPanelContentsLayout.setHorizontalGroup(
             jPanelContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1252, Short.MAX_VALUE)
+            .addGap(0, 1340, Short.MAX_VALUE)
         );
         jPanelContentsLayout.setVerticalGroup(
             jPanelContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1641,7 +1751,7 @@ public class Base extends javax.swing.JFrame {
             jPanelAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAboutLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1232, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1320, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelAboutLayout.setVerticalGroup(
@@ -1783,10 +1893,10 @@ public class Base extends javax.swing.JFrame {
         // TODO add your handling code here:
         String tempDisp;
         if (mItems != null && !evt.getItem().toString().equalsIgnoreCase("-- Select One --")) {
-            jLabelSmgmtInvIncSCodeLong.setText(mItems.get(evt.getItem().toString()).getItemsName());
-            tempDisp = mItems.get(evt.getItem().toString()).getStdPrices().toString();
-            smgmtInvTPrizeShow = Double.parseDouble(tempDisp);
-            jLabelSmgmtInvPrizeShow.setText(tempDisp);
+            jLabelSmgmtInvIncSCodeLong.setText(mItems.get(evt.getItem().toString()).getName());
+            //tempDisp = mItems.get(evt.getItem().toString()).getStdPrices().toString();
+            //smgmtInvTPrizeShow = Double.parseDouble(tempDisp);
+            //jLabelSmgmtInvPrizeShow.setText(tempDisp);
         }
     }//GEN-LAST:event_jComboBoxSmgmtInvIncSCodeItemStateChanged
 
@@ -1873,11 +1983,12 @@ public class Base extends javax.swing.JFrame {
     private javax.swing.JButton jButtonWhRegResetl;
     private javax.swing.JButton jButtonWhRegSave;
     private javax.swing.JCheckBox jCheckBoxjLabelDiscountItem;
+    private javax.swing.JComboBox jComboBoxCustRegChannel;
     private javax.swing.JComboBox jComboBoxCustRegCity;
     private javax.swing.JComboBox jComboBoxCustRegCountry;
-    private javax.swing.JComboBox jComboBoxCustRegCustType;
     private javax.swing.JComboBox jComboBoxCustRegState;
     private javax.swing.JComboBox jComboBoxCustRegTownship;
+    private javax.swing.JComboBox jComboBoxCustType;
     private javax.swing.JComboBox jComboBoxEmpRegCity;
     private javax.swing.JComboBox jComboBoxEmpRegCountry;
     private javax.swing.JComboBox jComboBoxEmpRegDepartment;
@@ -1887,7 +1998,14 @@ public class Base extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxEmpRegTownship;
     private javax.swing.JComboBox jComboBoxEmpRegWTeam;
     private javax.swing.JComboBox jComboBoxItemRegCategory;
+    private javax.swing.JComboBox jComboBoxItemRegSUInclude;
+    private javax.swing.JComboBox jComboBoxItemRegSUM;
+    private javax.swing.JComboBox jComboBoxItemRegSUP;
+    private javax.swing.JComboBox jComboBoxItemRegSUW;
     private javax.swing.JComboBox jComboBoxItemRegSupplier;
+    private javax.swing.JComboBox jComboBoxItemRegUM;
+    private javax.swing.JComboBox jComboBoxItemRegUP;
+    private javax.swing.JComboBox jComboBoxItemRegUW;
     private javax.swing.JComboBox jComboBoxSmgmtInvCustType;
     private javax.swing.JComboBox jComboBoxSmgmtInvIncLo;
     private javax.swing.JComboBox jComboBoxSmgmtInvIncSCode;
@@ -1899,18 +2017,18 @@ public class Base extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxWhRegSupervisor;
     private javax.swing.JComboBox jComboBoxWhRegTownship;
     private javax.swing.JLabel jLabeCustReglTownship;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelCustRegAddress;
+    private javax.swing.JLabel jLabelCustRegChannel;
     private javax.swing.JLabel jLabelCustRegCity;
     private javax.swing.JLabel jLabelCustRegCountry;
-    private javax.swing.JLabel jLabelCustRegCustType;
     private javax.swing.JLabel jLabelCustRegCustomerName;
     private javax.swing.JLabel jLabelCustRegFax;
     private javax.swing.JLabel jLabelCustRegMail;
     private javax.swing.JLabel jLabelCustRegOutletName;
     private javax.swing.JLabel jLabelCustRegPhone;
     private javax.swing.JLabel jLabelCustRegState;
+    private javax.swing.JLabel jLabelCustType;
     private javax.swing.JLabel jLabelDiscountItem;
     private javax.swing.JLabel jLabelEmpRegAddress;
     private javax.swing.JLabel jLabelEmpRegCity;
@@ -1926,13 +2044,17 @@ public class Base extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelEmpRegTownship;
     private javax.swing.JLabel jLabelEmpRegWPhone;
     private javax.swing.JLabel jLabelEmpRegWTeam;
-    private javax.swing.JLabel jLabelGrams;
     private javax.swing.JLabel jLabelItemRegCategory;
     private javax.swing.JLabel jLabelItemRegCode;
     private javax.swing.JLabel jLabelItemRegName;
-    private javax.swing.JLabel jLabelItemRegPrize;
+    private javax.swing.JLabel jLabelItemRegSUInclude;
+    private javax.swing.JLabel jLabelItemRegSUM;
+    private javax.swing.JLabel jLabelItemRegSUP;
+    private javax.swing.JLabel jLabelItemRegSUW;
     private javax.swing.JLabel jLabelItemRegSupplier;
-    private javax.swing.JLabel jLabelItemRegWeight;
+    private javax.swing.JLabel jLabelItemRegUM;
+    private javax.swing.JLabel jLabelItemRegUP;
+    private javax.swing.JLabel jLabelItemRegUW;
     private javax.swing.JLabel jLabelSmgmtInvCustType;
     private javax.swing.JLabel jLabelSmgmtInvIncLo;
     private javax.swing.JLabel jLabelSmgmtInvIncLoLong;
@@ -2019,8 +2141,11 @@ public class Base extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldEmpRegWPhone;
     private javax.swing.JTextField jTextFieldItemRegCode;
     private javax.swing.JTextField jTextFieldItemRegName;
-    private javax.swing.JTextField jTextFieldItemRegPrize;
-    private javax.swing.JTextField jTextFieldItemRegWeight;
+    private javax.swing.JTextField jTextFieldItemRegSUInclude;
+    private javax.swing.JTextField jTextFieldItemRegSUP;
+    private javax.swing.JTextField jTextFieldItemRegSUW;
+    private javax.swing.JTextField jTextFieldItemRegUP;
+    private javax.swing.JTextField jTextFieldItemRegUW;
     private javax.swing.JTextField jTextFieldSmgmtInvIncQty;
     private javax.swing.JTextField jTextFieldSmgmtPosIncQty;
     private javax.swing.JTextField jTextFieldSmgmtPosVCNo;

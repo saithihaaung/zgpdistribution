@@ -8,15 +8,16 @@ package zgpdistribution.util.oops;
  *
  * @author John
  */
-public class Team {
+public class CustomerType {
 
-    private String name;
+    private String name, code;
 
-    public Team() {
+    public CustomerType() {
     }
 
-    public Team(String name) {
+    public CustomerType(String name, String code) {
         this.name = name;
+        this.code = code;
     }
 
     public String getName() {
@@ -25,5 +26,13 @@ public class Team {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

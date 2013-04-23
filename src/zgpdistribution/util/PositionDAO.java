@@ -47,19 +47,19 @@ public class PositionDAO {
     }
 
     public ArrayList<Position> queryAll() {
-        String sql = "select * from position order by position ASC";
+        String sql = "select * from position order by position asc";
         ArrayList<Position> positionList = null;
         try {
             positionList = new ArrayList<>();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {                
+            while (rs.next()) {
                 positionList.add(new Position(rs.getString("position")));
             }
             rs.close();
         } catch (SQLException ex) {
             Logger.getLogger(PositionDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
         return positionList;
